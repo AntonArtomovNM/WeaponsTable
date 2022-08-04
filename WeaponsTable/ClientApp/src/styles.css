@@ -1,0 +1,66 @@
+.tool-tip { 
+    white-space: pre-line; 
+    font-size: 16px!important;
+    max-width: 20vw!important;
+    min-width: 250px!important;
+}  
+
+.mat-tooltip {
+    background: rgba(97,97,97,.95);
+}
+
+.mat-card-content {
+    font-size: 16px!important;
+}
+
+.sm-field {
+    width: 55px!important;
+}
+
+.mr-1 {
+    margin-right: 0.25em!important;
+}
+
+.mr-2 {
+    margin-right: 0.5em!important;
+}
+
+.mr-3 {
+    margin-right: 1em!important;
+}
+
+.mr-4 {
+    margin-right: 1.25em!important;
+}
+
+.mr-5 {
+    margin-right: 1.5em!important;
+}
+
+.ml-1 {
+    margin-left: 0.25em!important;
+}
+
+.ml-2 {
+    margin-left: 0.5em!important;
+}
+
+.ml-3 {
+    margin-left: 1em!important;
+}
+
+.ml-4 {
+    margin-left: 1.25em!important;
+}
+
+.ml-5 {
+    margin-left: 1.5em!important;
+}
+
+.pr-0 {
+    padding-right: 0em!important;
+}
+
+.full-width {
+    width: 100%;
+}

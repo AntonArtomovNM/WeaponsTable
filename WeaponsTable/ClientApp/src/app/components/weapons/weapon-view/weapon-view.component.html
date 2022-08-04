@@ -1,0 +1,47 @@
+<mat-card>
+    <ng-container *ngIf="isViewMode; else editMode">
+        <mat-card-title class="d-flex justify-content-between mb-0">
+            {{weapon.name}}
+            <button mat-icon-button aria-label="Edit weapon icon" color="primary" (click)="switchViewMode()">
+                    <mat-icon>edit</mat-icon>
+            </button>
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{getWeaponTypeDisplayName(weapon.weaponType)}}
+        </mat-card-subtitle>
+
+        <mat-card-content>
+            <div class="mb-2">
+                <span class="mr-5 mb-1">
+                    Урон: <b>{{weapon.damage.diceAmount}}к{{weapon.damage.diceType}}</b> {{getDamageTypeDisplayName(weapon.damage.damageType)}}
+                </span>
+                <span class="mr-5 mb-1">
+                    Цена: {{getPriceString(weapon.price)}}
+                </span>
+                <span class="mr-5 mb-1">
+                    Вес: {{weapon.weight}} кг.
+                </span>
+            </div>
+            
+            <mat-chip-list aria-label="Weapon properties">
+                <ng-container *ngFor="let prop of weapon.weaponProperties">
+                    <mat-chip color="accent" selected [matTooltip]="prop.data.description" matTooltipClass="tool-tip">
+                        {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}
+                    </mat-chip>
+                </ng-container>
+            </mat-chip-list>
+            
+            <ng-container *ngIf="weapon.description">
+                <div class="my-3">
+                    <mat-divider inset></mat-divider>
+                </div>
+    
+                <p>{{weapon.description}}</p>
+            </ng-container>
+        </mat-card-content>
+    </ng-container>
+</mat-card>
+
+<ng-template #editMode>
+    <app-weapon-edit [weapon]="weapon" (switchViewMode)="switchViewMode($event)"></app-weapon-edit>
+</ng-template>

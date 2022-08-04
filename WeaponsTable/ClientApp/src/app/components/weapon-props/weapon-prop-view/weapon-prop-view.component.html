@@ -1,0 +1,22 @@
+<mat-card>
+    <ng-container *ngIf="isViewMode; else editMode">
+        <mat-card-title class="d-flex justify-content-between mb-0">
+            {{weaponProp.name}}
+            <button mat-icon-button aria-label="Edit weapon prop icon" color="primary" (click)="switchViewMode()">
+                    <mat-icon>edit</mat-icon>
+            </button>
+        </mat-card-title>
+
+        <div class="mb-3 mt-2">
+            <mat-divider inset></mat-divider>
+        </div>
+
+        <mat-card-content>    
+            <p>{{weaponProp.description}}</p>
+        </mat-card-content>
+    </ng-container>
+</mat-card>
+
+<ng-template #editMode>
+    <app-weapon-prop-edit [weaponProp]="weaponProp" (switchViewMode)="switchViewMode($event)"></app-weapon-prop-edit>
+</ng-template>

@@ -1,0 +1,11 @@
+<ng-container *ngIf="weapons$ | async as weapons">
+    <div class="text-center">
+        <h1 class="display-4">ULTIMATE WEAPON TABLE</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <ng-container *ngFor="let weapon of weapons">
+        <br/>
+        <app-weapon-view [weapon]="weapon"></app-weapon-view>
+    </ng-container>
+    <br/>
+</ng-container>

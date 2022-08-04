@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>
+    <div class="d-flex justify-content-between">
+        Добавить оружие
+        <button mat-icon-button aria-label="Cancel add icon" (click)="closeDialog()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+</h1>
+
+<div mat-dialog-content>
+    <app-weapon-form 
+        [onSave]="addWeapon" 
+        [footerButtonsTemplate]="footerButtons">
+    </app-weapon-form>
+</div>
+
+<ng-template #footerButtons>
+    <button mat-raised-button (click)="closeDialog()">Отмена</button>
+</ng-template>
