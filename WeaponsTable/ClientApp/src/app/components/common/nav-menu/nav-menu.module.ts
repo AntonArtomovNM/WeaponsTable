@@ -6,8 +6,8 @@ import { NavMenuComponent } from './nav-menu.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
-import { WeaponAddDialogModule } from '../weapons/weapon-add-dialog/weapon-add-dialog.module';
-import { WeaponPropAddDialogModule } from '../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.module';
+import { WeaponAddDialogModule } from '../../weapons/weapon-add-dialog/weapon-add-dialog.module';
+import { WeaponPropAddDialogModule } from '../../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.module';
 
 
 @NgModule({

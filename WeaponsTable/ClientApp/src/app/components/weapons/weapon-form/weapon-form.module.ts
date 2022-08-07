@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { WeaponPropLinkDialogModule } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatInputModule,
     MatDividerModule,
     MatSelectModule,
+    WeaponPropLinkDialogModule,
   ],
   exports: [
     WeaponFormComponent

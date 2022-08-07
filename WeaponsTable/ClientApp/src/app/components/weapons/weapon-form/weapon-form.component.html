@@ -82,11 +82,17 @@
     
     <mat-chip-list aria-label="Weapon properties">
         <ng-container *ngFor="let prop of weaponProperties">
-            <mat-chip color="accent" selected [matTooltip]="prop.data.description" matTooltipClass="tool-tip">
+            <mat-chip 
+                color="accent" 
+                selected 
+                [matTooltip]="prop.data.description" 
+                (removed)="removeProperty(prop.id)"
+                matTooltipClass="tool-tip"
+            >
                 {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}
     
-                <button matChipRemove (click)="removeProperty(prop.id)">
-                    <mat-icon>highlight_off</mat-icon>
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
                 </button>
             </mat-chip>
         </ng-container>

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { WeaponAddDialogComponent } from '../weapons/weapon-add-dialog/weapon-add-dialog.component';
-import { WeaponPropAddDialogComponent } from '../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.component';
+import { WeaponAddDialogComponent } from '../../weapons/weapon-add-dialog/weapon-add-dialog.component';
+import { WeaponPropAddDialogComponent } from '../../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.component';
 
 @Component({
   selector: 'app-nav-menu',
