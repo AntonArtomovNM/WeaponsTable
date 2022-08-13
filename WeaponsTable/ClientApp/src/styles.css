@@ -71,3 +71,7 @@ app-nav-menu {
 .full-width {
     width: 100%!important;
 }
+
+.text-pre-line {
+    white-space: pre-line;
+}

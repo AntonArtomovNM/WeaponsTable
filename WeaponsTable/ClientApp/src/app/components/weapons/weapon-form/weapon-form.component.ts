@@ -33,8 +33,8 @@ export class WeaponFormComponent implements OnInit {
       damage: this.fb.group({
         diceType: [null, [Validators.required]],
         diceAmount: [null, [Validators.required]],
-        damageType: [null, [Validators.required]],
       }),
+      damageTypes: [null, [Validators.required]],
       weaponType: [null, [Validators.required]],
       price: this.fb.group({
         pp: [0],
