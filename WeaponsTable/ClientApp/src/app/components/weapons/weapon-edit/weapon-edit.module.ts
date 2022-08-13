@@ -1,4 +1,4 @@
-import { DeleteDialogModule } from './../../common/delete-dialog/delete-dialog.module';
+import { DeleteDialogModule } from '../../common/delete-dialog/delete-dialog.module';
 import { WeaponFormModule } from '../weapon-form/weapon-form.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

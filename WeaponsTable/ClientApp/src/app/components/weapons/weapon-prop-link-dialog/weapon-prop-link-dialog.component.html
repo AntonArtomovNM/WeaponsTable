@@ -8,7 +8,13 @@
             <mat-label>Свойство</mat-label>
             <input type="text" matInput formControlName="propertyId" [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getPropName.bind(this)"> 
-                <mat-option *ngFor="let prop of filteredOptions | async" [value]="prop.id"> 
+                <mat-option 
+                    *ngFor="let prop of filteredOptions | async" 
+                    [value]="prop.id"
+                    [matTooltip]="prop.description" 
+                    matTooltipPosition="right"
+                    matTooltipClass="tool-tip"
+                > 
                     {{prop.name}} 
                 </mat-option> 
             </mat-autocomplete>

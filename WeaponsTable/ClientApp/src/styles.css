@@ -1,3 +1,10 @@
+app-nav-menu {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 .tool-tip { 
     white-space: pre-line; 
     font-size: 16px!important;
@@ -6,7 +13,7 @@
 }  
 
 .mat-tooltip {
-    background: rgba(97,97,97,.95);
+    background: rgba(97,97,97,.95)!important;
 }
 
 .mat-card-content {
@@ -62,5 +69,5 @@
 }
 
 .full-width {
-    width: 100%;
+    width: 100%!important;
 }

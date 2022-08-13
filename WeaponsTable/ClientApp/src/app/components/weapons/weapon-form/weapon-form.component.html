@@ -85,8 +85,8 @@
             <mat-chip 
                 color="accent" 
                 selected 
+                (removed)="removeProperty(prop.propertyId)"
                 [matTooltip]="prop.data.description" 
-                (removed)="removeProperty(prop.id)"
                 matTooltipClass="tool-tip"
             >
                 {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}

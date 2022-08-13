@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 export abstract class AbstractCacheService<T> {
 

@@ -39,10 +39,11 @@ export class WeaponPropLinkDialogComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value || '')),
     );
-  }
+  } 
 
   getPropName(propertyId: string){
-    return this.weaponProps?.find(p => p.id === propertyId)?.name;
+    var prop = this.weaponProps?.find(p => p.id === propertyId);
+    return prop?.name;
   }
 
   getPropLink(){

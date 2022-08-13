@@ -1,23 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { WeaponAddDialogComponent } from '../../weapons/weapon-add-dialog/weapon-add-dialog.component';
-import { WeaponPropAddDialogComponent } from '../../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.component';
+import { WeaponAddDialogComponent } from '../weapons/weapon-add-dialog/weapon-add-dialog.component';
+import { WeaponPropAddDialogComponent } from '../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.component';
+import { StyleService } from 'src/app/services/style.service';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.less']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
+  isDarkMode: boolean
 
   constructor(
     public dialog: MatDialog,
-    iconRegistry: MatIconRegistry, 
-    sanitizer: DomSanitizer,
+    readonly iconRegistry: MatIconRegistry, 
+    readonly sanitizer: DomSanitizer,
+    private readonly styleService: StyleService
   ) {
     iconRegistry.addSvgIconLiteral('kcaa_logo', sanitizer.bypassSecurityTrustHtml(kcaaSvg));
+  }
+
+  ngOnInit() {
+    this.changeTheme(null);
   }
 
   openWeaponDialog(): void {
@@ -30,6 +37,11 @@ export class NavMenuComponent {
     this.dialog.open(WeaponPropAddDialogComponent, {
       width: '1000px',
     });
+  }
+
+  changeTheme(isDarkModeToggle: any) {
+    const theme = isDarkModeToggle?.checked ? "purple-green" : "deeppurple-amber";
+    this.styleService.setStyle(`${theme}.css`);
   }
 }
 

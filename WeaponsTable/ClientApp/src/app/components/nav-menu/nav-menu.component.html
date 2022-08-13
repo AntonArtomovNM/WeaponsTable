@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <button mat-mini-fab color="primary" [routerLink]="['/']" class="shadow-none">
+    <mat-icon svgIcon="kcaa_logo"></mat-icon>
+  </button>
+
+  <mat-divider vertical class="mr-3 ml-3 h-75"></mat-divider>
+
+  <span role="button" routerLink="/weapons">Weapons</span>
+  <button mat-icon-button color="primary" (click)="openWeaponDialog()">
+    <mat-icon>control_point</mat-icon>
+  </button>
+
+  <mat-divider vertical class="mr-3 ml-2 h-75"></mat-divider>
+
+  <span role="button" routerLink="/weapon-props">Weapon Properties</span>
+  <button mat-icon-button color="primary" (click)="openWeaponPropDialog()">
+    <mat-icon>control_point</mat-icon>
+  </button>
+  
+  <span class="spacer"></span>
+
+  <mat-slide-toggle (change)="changeTheme($event)">
+    Dark Mode
+  </mat-slide-toggle>
+</mat-toolbar>
