@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { damageTypeOptions, diceOptions, weaponTypeOptions } from 'src/app/forms/weaponFormOptions';
 import { Weapon } from 'src/app/models/weapon';
 import { WeaponPropertyLink } from 'src/app/models/weaponPropertyLink';
+import { WeaponPropLinkDialogComponent } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.component';
 
 @Component({
   selector: 'app-weapon-form',
@@ -23,6 +25,7 @@ export class WeaponFormComponent implements OnInit {
   damageTypeOptions = damageTypeOptions;
   
   constructor(
+    public dialog: MatDialog,
     private fb: FormBuilder,
   ) { 
     this.form = this.fb.group({
@@ -61,7 +64,16 @@ export class WeaponFormComponent implements OnInit {
   }
 
   addProperty(){
-    debugger
+    const dialogRef = this.dialog.open(WeaponPropLinkDialogComponent, {
+      width: '500px',
+      data: {existingPropIds: this.weaponProperties.map(wp => wp.propertyId)},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.weaponProperties.push(result);
+      }
+    })
   }
 
   removeProperty(propertyId: string){
@@ -69,8 +81,6 @@ export class WeaponFormComponent implements OnInit {
   }
 
   saveWeapon(){
-    this.weaponProperties.forEach(wp => delete wp.data)
-
     const weapon = {
       id: this.model?.id,
       ...this.form.value,

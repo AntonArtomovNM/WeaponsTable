@@ -1,1 +1,32 @@
-<p>weapon-prop-link-dialog works!</p>
+<h1 mat-dialog-title>
+    Добавить свойство оружию
+</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field appearance="legacy">
+            <mat-label>Свойство</mat-label>
+            <input type="text" matInput formControlName="propertyId" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getPropName.bind(this)"> 
+                <mat-option 
+                    *ngFor="let prop of filteredOptions | async" 
+                    [value]="prop.id"
+                    [matTooltip]="prop.description" 
+                    matTooltipPosition="right"
+                    matTooltipClass="tool-tip"
+                > 
+                    {{prop.name}} 
+                </mat-option> 
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" class="ml-5">
+            <mat-label>Дополнительные данные</mat-label>
+            <input type="text" matInput formControlName="additionalData">
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-between">
+    <button mat-raised-button type="button" (click)="closeDialog()">Отмена</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" [mat-dialog-close]="getPropLink()">Сохранить</button>
+</div>

@@ -1,29 +1,25 @@
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-      <div class="container">
-        <div class="navbar-collapse collapse d-sm-inline-flex">
-          <button mat-mini-fab color="primary" [routerLink]="['/']" class="shadow-none">
-            <mat-icon svgIcon="kcaa_logo"></mat-icon>
-          </button>
+<mat-toolbar>
+  <button mat-mini-fab color="primary" [routerLink]="['/']" class="shadow-none">
+    <mat-icon svgIcon="kcaa_logo"></mat-icon>
+  </button>
 
-          <ul class="navbar-nav flex-grow justify-content-end">
-            <mat-divider vertical class="mr-2 ml-3 my-1"></mat-divider>
-            <li class="nav-item d-flex">
-              <a class="nav-link text-dark pr-0" routerLink="/weapons">Weapons</a>
-              <button mat-icon-button color="primary" (click)="openWeaponDialog()">
-                <mat-icon>control_point</mat-icon>
-              </button>
-            </li>
-            <mat-divider vertical class="mx-2 my-1"></mat-divider>
-            <li class="nav-item d-flex">
-              <a class="nav-link text-dark pr-0" routerLink="/weapon-props">Weapon Properties</a>
-              <button mat-icon-button color="primary" (click)="openWeaponPropDialog()">
-                <mat-icon>control_point</mat-icon>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <mat-divider vertical class="mr-3 ml-3 h-75"></mat-divider>
+
+  <span role="button" routerLink="/weapons">Weapons</span>
+  <button mat-icon-button color="primary" (click)="openWeaponDialog()">
+    <mat-icon>control_point</mat-icon>
+  </button>
+
+  <mat-divider vertical class="mr-3 ml-2 h-75"></mat-divider>
+
+  <span role="button" routerLink="/weapon-props">Weapon Properties</span>
+  <button mat-icon-button color="primary" (click)="openWeaponPropDialog()">
+    <mat-icon>control_point</mat-icon>
+  </button>
   
+  <span class="spacer"></span>
+
+  <mat-slide-toggle [(ngModel)]="isDarkMode" (change)="changeTheme()">
+    Dark Mode
+  </mat-slide-toggle>
+</mat-toolbar>

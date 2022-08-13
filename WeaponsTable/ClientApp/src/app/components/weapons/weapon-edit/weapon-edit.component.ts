@@ -1,3 +1,4 @@
+import { WeaponPropertyLink } from './../../../models/weaponPropertyLink';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Weapon } from 'src/app/models/weapon';
@@ -13,13 +14,27 @@ export class WeaponEditComponent {
   @Input() weapon: Weapon;
   @Output() switchViewMode = new EventEmitter();
 
-  updateWeapon: Function = (newWeapon: Weapon) => {
-    this.weaponService.updateWeapon(newWeapon).subscribe(result => {
-      this.switchViewMode.emit(result);
+  updateWeapon: Function = (weapon: Weapon) => {
+    this.weaponService.updateWeapon(weapon).subscribe(result => {
+      const newweapon = {
+        ...result,
+        weaponProperties: weapon.weaponProperties
+      } as Weapon
+
+      this.switchViewMode.emit(newweapon);
     });
   }
 
-  deleteWeapon: Function = () => {
+  constructor(
+    public dialog: MatDialog,
+    private weaponService: WeaponService,
+  ) {}
+
+  switchMode(){
+    this.switchViewMode.emit();
+  }
+
+  deleteWeapon(){
     this.dialog.open(DeleteDialogComponent, {
       width: '500px',
       data: {
@@ -32,14 +47,7 @@ export class WeaponEditComponent {
         },
       },
     });
-  }
 
-  constructor(
-    public dialog: MatDialog,
-    private weaponService: WeaponService,
-  ) {}
-
-  switchMode(){
-    this.switchViewMode.emit();
+    this.switchMode();
   }
 }

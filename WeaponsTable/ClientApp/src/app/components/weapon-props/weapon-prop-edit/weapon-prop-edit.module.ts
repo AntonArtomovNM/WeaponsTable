@@ -4,6 +4,7 @@ import { WeaponPropEditComponent } from './weapon-prop-edit.component';
 import { WeaponPropFormModule } from '../weapon-prop-form/weapon-prop-form.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { DeleteDialogModule } from '../../common/delete-dialog/delete-dialog.module';
 
 
 
@@ -16,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatButtonModule,
     WeaponPropFormModule,
+    DeleteDialogModule,
   ],
   exports: [
     WeaponPropEditComponent
