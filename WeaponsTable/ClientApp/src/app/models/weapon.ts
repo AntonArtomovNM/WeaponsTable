@@ -1,15 +1,17 @@
 import { WeaponType } from "../enums/weaponType";
 import { Money } from "./money";
-import { WeaponDamage } from "./weaponDamage";
+import { Dice } from "./dice";
 import { WeaponPropertyLink } from "./weaponPropertyLink";
+import { DamageType } from "../enums/damageType";
 
 export class Weapon {
     id?: string;
     name: string;
-    damage: WeaponDamage;
     weaponType: WeaponType;
     price: Money;
     weight: number;
     description?: string;
+    damage: Dice;
+    damageTypes: DamageType[];
     weaponProperties?: WeaponPropertyLink[];
 }

@@ -1,30 +1,24 @@
 ﻿using WeaponsTable.Contracts;
-using WeaponsTable.Enums.Weapon;
+using WeaponsTable.Enums;
 
 namespace WeaponsTable.Models
 {
     public class Weapon : MongoDbObject
     {
-        public Weapon()
-        {
-            Name = string.Empty;
-            Damage = new Dice();
-            Price = new Money();
-            WeaponProperties = new List<WeaponPropertyLink>();
-        }
-
-        public string Name { get; set; }
-
-        public Dice Damage { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public WeaponType WeaponType { get; set; }
 
-        public Money Price { get; set; }
+        public Money Price { get; set; } = new Money();
 
         public float Weight { get; set; }
 
         public string? Description { get; set; }
 
-        public ICollection<WeaponPropertyLink> WeaponProperties { get; set; }
+        public Dice Damage { get; set; } = new Dice();
+
+        public IEnumerable<DamageType> DamageTypes { get; set; } = Enumerable.Empty<DamageType>();
+
+        public IEnumerable<WeaponPropertyLink> WeaponProperties { get; set; } = Enumerable.Empty<WeaponPropertyLink>();
     }
 }

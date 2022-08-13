@@ -17,15 +17,15 @@ export class WeaponViewComponent {
   constructor() { }
 
   getWeaponTypeDisplayName(value: WeaponType): string {
-    return WeaponType[value].replace(/([а-я])([А-Я])/g, '$1 $2')
+    return this.separateWords(WeaponType[value]);
   }
 
-  getDamageTypeDisplayName(value: DamageType): string {
-    return DamageType[value].replace(/([а-я])([А-Я])/g, '$1 $2')
+  getDamageTypeDisplayNames(values: DamageType[]): string {
+    return values.map(value => this.separateWords(DamageType[value])).join(', ');
   }
 
   getPriceString(price: Money): string{
-    return Money.getValue(price)
+    return Money.getValue(price);
   }
 
   switchViewMode(updatedWeapon: Weapon | null = null){
@@ -34,5 +34,9 @@ export class WeaponViewComponent {
     if (updatedWeapon){
       this.weapon = updatedWeapon;
     }
+  }
+
+  private separateWords(str: string): string {
+    return str.replace(/([а-я])([А-Я])/g, '$1 $2');
   }
 }
