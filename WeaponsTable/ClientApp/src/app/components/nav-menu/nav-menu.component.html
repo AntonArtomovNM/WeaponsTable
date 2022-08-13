@@ -19,7 +19,7 @@
   
   <span class="spacer"></span>
 
-  <mat-slide-toggle (change)="changeTheme($event)">
+  <mat-slide-toggle [(ngModel)]="isDarkMode" (change)="changeTheme()">
     Dark Mode
   </mat-slide-toggle>
 </mat-toolbar>

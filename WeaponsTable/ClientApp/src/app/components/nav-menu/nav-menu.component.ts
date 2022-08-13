@@ -24,7 +24,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.changeTheme(null);
+    this.isDarkMode = true;
+    this.changeTheme();
   }
 
   openWeaponDialog(): void {
@@ -39,8 +40,8 @@ export class NavMenuComponent implements OnInit {
     });
   }
 
-  changeTheme(isDarkModeToggle: any) {
-    const theme = isDarkModeToggle?.checked ? "purple-green" : "deeppurple-amber";
+  changeTheme() {
+    const theme = this.isDarkMode ? "dark-mode" : "light-mode";
     this.styleService.setStyle(`${theme}.css`);
   }
 }
