@@ -11,5 +11,7 @@
         public string WeaponCollectionName { get; set; } = null!;
 
         public string WeaponPropertyCollectionName { get; set; } = null!;
+
+        public bool ShouldMarkChanges { get; set; }
     }
 }

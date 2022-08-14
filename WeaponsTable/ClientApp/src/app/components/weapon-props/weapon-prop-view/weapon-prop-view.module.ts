@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { WeaponPropEditModule } from '../weapon-prop-edit/weapon-prop-edit.module';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 
@@ -19,6 +20,7 @@ import { WeaponPropEditModule } from '../weapon-prop-edit/weapon-prop-edit.modul
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    MatBadgeModule,
     WeaponPropEditModule,
   ],
   exports: [

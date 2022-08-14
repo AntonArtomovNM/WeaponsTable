@@ -9,24 +9,35 @@ namespace WeaponsTable.Services
     public class WeaponProvider : MongoDbProviderBase<Weapon>, IWeaponProvider
     {
         private readonly IMongoCollection<Weapon> _mongoCollection;
+        private readonly MongoDbSettings _dbSettings;
 
         public WeaponProvider(IOptions<MongoDbSettings> dbSettingsOption)
         {
-            var dbSettings = dbSettingsOption.Value;
-            var mongoClient = new MongoClient(dbSettings.ConnectionString);
-            var mongoDatabase = mongoClient.GetDatabase(dbSettings.DatabaseName);
+            _dbSettings = dbSettingsOption.Value;
+            var mongoClient = new MongoClient(_dbSettings.ConnectionString);
+            var mongoDatabase = mongoClient.GetDatabase(_dbSettings.DatabaseName);
 
-            _mongoCollection = mongoDatabase.GetCollection<Weapon>(dbSettings.WeaponCollectionName);
+            _mongoCollection = mongoDatabase.GetCollection<Weapon>(_dbSettings.WeaponCollectionName);
         }
 
         public async Task<Weapon> CreateWeapon(Weapon weapon)
         {
+            if (_dbSettings.ShouldMarkChanges)
+            {
+                weapon.IsNew = true;
+            }
+
             await _mongoCollection.InsertOneAsync(weapon);
             return weapon;
         }
 
         public async Task<Weapon> UpdateWeapon(Weapon weapon)
         {
+            if (_dbSettings.ShouldMarkChanges)
+            {
+                weapon.IsNew = true;
+            }
+
             await _mongoCollection.ReplaceOneAsync(GetIdFilter(weapon.Id), weapon);
             return weapon;
         }

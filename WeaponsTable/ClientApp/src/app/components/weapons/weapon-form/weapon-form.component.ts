@@ -55,6 +55,7 @@ export class WeaponFormComponent implements OnInit {
     const formModel = {...this.model};
     delete formModel.id;
     delete formModel.weaponProperties;
+    delete formModel.isNew;
 
     this.form.setValue(formModel);
 

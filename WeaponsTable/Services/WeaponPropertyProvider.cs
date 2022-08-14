@@ -9,24 +9,35 @@ namespace WeaponsTable.Services
     public class WeaponPropertyProvider : MongoDbProviderBase<WeaponProperty>, IWeaponPropertyProvider
     {
         private readonly IMongoCollection<WeaponProperty> _mongoCollection;
+        private readonly MongoDbSettings _dbSettings;
 
         public WeaponPropertyProvider(IOptions<MongoDbSettings> dbSettingsOption)
         {
-            var dbSettings = dbSettingsOption.Value;
-            var mongoClient = new MongoClient(dbSettings.ConnectionString);
-            var mongoDatabase = mongoClient.GetDatabase(dbSettings.DatabaseName);
+            _dbSettings = dbSettingsOption.Value;
+            var mongoClient = new MongoClient(_dbSettings.ConnectionString);
+            var mongoDatabase = mongoClient.GetDatabase(_dbSettings.DatabaseName);
 
-            _mongoCollection = mongoDatabase.GetCollection<WeaponProperty>(dbSettings.WeaponPropertyCollectionName);
+            _mongoCollection = mongoDatabase.GetCollection<WeaponProperty>(_dbSettings.WeaponPropertyCollectionName);
         }
 
         public async Task<WeaponProperty> CreateWeaponProperty(WeaponProperty weaponProperty)
         {
+            if (_dbSettings.ShouldMarkChanges)
+            {
+                weaponProperty.IsNew = true;
+            }
+
             await _mongoCollection.InsertOneAsync(weaponProperty);
             return weaponProperty;
         }
 
         public async Task<WeaponProperty> UpdateWeaponProperty(WeaponProperty weaponProperty)
         {
+            if (_dbSettings.ShouldMarkChanges)
+            {
+                weaponProperty.IsNew = true;
+            }
+
             await _mongoCollection.ReplaceOneAsync(GetIdFilter(weaponProperty.Id), weaponProperty);
             return weaponProperty;
         }

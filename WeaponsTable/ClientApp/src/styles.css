@@ -75,3 +75,11 @@ app-nav-menu {
 .text-pre-line {
     white-space: pre-line;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}  
+
+.cursor-pointer {
+    cursor: pointer;
+}

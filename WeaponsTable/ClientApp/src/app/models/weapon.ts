@@ -14,4 +14,5 @@ export class Weapon {
     damage: Dice;
     damageTypes: DamageType[];
     weaponProperties?: WeaponPropertyLink[];
+    isNew?: boolean;
 }
