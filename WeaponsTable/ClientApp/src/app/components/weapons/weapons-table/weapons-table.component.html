@@ -1,11 +1,31 @@
-<ng-container *ngIf="weapons$ | async as weapons">
+<ng-container *ngIf="weapons$ | async as weaponsQuery">
+    <br/>
     <div class="text-center">
         <h1 class="display-4">ULTIMATE WEAPON TABLE</h1>
     </div>
-    <mat-divider></mat-divider>
-    <ng-container *ngFor="let weapon of weapons">
-        <br/>
-        <app-weapon-view [weapon]="weapon"></app-weapon-view>
+    <ng-container *ngFor="let weaponsPerType of sortedWeapons">
+        <ng-container *ngIf="weaponsPerType.weapons.length > 0">
+            <br/>
+            <mat-divider></mat-divider>
+
+            <div matRipple class="user-select-none cursor-pointer" (click)="toggleType(weaponsPerType)">
+                <h4 class="m-3 d-flex">
+                    {{weaponsPerType.displayName}}
+                    <span class="spacer"></span>
+                    <mat-icon class="mt-1" color="primary">
+                        {{weaponsPerType.isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
+                    </mat-icon>
+                </h4>
+            </div>
+            <mat-divider></mat-divider>
+
+            <ng-container *ngIf="weaponsPerType.isOpen">
+                <ng-container *ngFor="let weapon of weaponsPerType.weapons">
+                    <br/>
+                    <app-weapon-view [weapon]="weapon"></app-weapon-view>
+                </ng-container>
+            </ng-container>
+        </ng-container>
     </ng-container>
     <br/>
 </ng-container>
