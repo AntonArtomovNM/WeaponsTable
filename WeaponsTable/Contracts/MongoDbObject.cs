@@ -7,5 +7,7 @@ namespace WeaponsTable.Contracts
     {
         [BsonId]
         public Guid Id { get; set; } = Guid.NewGuid();
+
+        public bool? IsNew { get; set; }
     }
 }
