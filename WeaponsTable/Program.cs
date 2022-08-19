@@ -1,5 +1,4 @@
 using WeaponsTable.Contracts;
-using WeaponsTable.Extensions;
 using WeaponsTable.Services;
 using WeaponsTable.Settings;
 
@@ -11,9 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IWeaponProvider, WeaponProvider>();
 builder.Services.AddScoped<IWeaponPropertyProvider, WeaponPropertyProvider>();
 
-var mongoDbConfig = builder.Configuration.GetSection(MongoDbSettings.SectionKey);
-builder.Services.Configure<MongoDbSettings>(mongoDbConfig);
-builder.Services.AddHealthChecks().AddMongoDb(mongoDbConfig.Get<MongoDbSettings>().ConnectionString);
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(MongoDbSettings.SectionKey));
 
 var app = builder.Build();
 
@@ -25,10 +22,11 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapCustomHealthChecks();
-});
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+
+app.MapFallbackToFile("index.html"); ;
 
 app.Run();
