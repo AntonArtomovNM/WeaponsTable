@@ -11,6 +11,7 @@ export class WeaponService {
   private readonly weaponsEndpoint: string 
   
   public shouldRefresh = new EventEmitter();
+  public onError = new EventEmitter();
 
   constructor(
     @Inject('BASE_URL') private baseUrl: string,

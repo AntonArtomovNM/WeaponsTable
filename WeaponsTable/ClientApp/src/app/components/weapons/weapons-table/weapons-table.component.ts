@@ -12,6 +12,7 @@ import { WeaponService } from 'src/app/services/weapon.service';
 })
 export class WeaponsTableComponent implements OnInit {
   weapons$: Observable<Array<Weapon>>;
+  error: string;
   sortedWeapons: {type: WeaponType, displayName: string, isOpen: boolean, weapons: Array<Weapon>}[] = [
     {
       type: WeaponType.ПростоеРукопашное,
@@ -57,15 +58,20 @@ export class WeaponsTableComponent implements OnInit {
   private refresh() {
     this.sortedWeapons.forEach(sw => sw.weapons = []);
 
-    this.weaponPropService.getWeaponProperties().subscribe(weaponProps =>{
-      this.weapons$ = this.weaponService.getWeapons().pipe(map(weapons => {
-        weapons.forEach(w => {
-          w.weaponProperties?.forEach(wp => wp.data = weaponProps.find(x => x.id === wp.propertyId));
+    this.weaponPropService.getWeaponProperties().subscribe(
+      weaponProps =>{
+        this.weapons$ = this.weaponService.getWeapons().pipe(map(weapons => {
+          weapons.forEach(w => {
+            w.weaponProperties?.forEach(wp => wp.data = weaponProps.find(x => x.id === wp.propertyId));
 
-          this.sortedWeapons.find(sw => sw.type === w.weaponType)?.weapons.push(w);
-        })
-        return weapons
-      }));
-    });
+            this.sortedWeapons.find(sw => sw.type === w.weaponType)?.weapons.push(w);
+          })
+          return weapons
+        }));
+      },
+      error => {
+        this.error = `${error.message} : ${error.error}`;
+      }
+    );
   }
 }
