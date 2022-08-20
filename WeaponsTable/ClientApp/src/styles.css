@@ -20,6 +20,10 @@ app-nav-menu {
     font-size: 16px!important;
 }
 
+.mat-badge-large .mat-badge-content {
+    font-size: 10px!important;
+}
+
 .sm-field {
     width: 55px!important;
 }

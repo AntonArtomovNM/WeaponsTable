@@ -1,4 +1,4 @@
-<mat-card matBadge="!" matBadgePosition="before" [matBadgeHidden]="!weaponProp.isNew">
+<mat-card matBadge="New" matBadgeSize="large" matBadgePosition="before" [matBadgeHidden]="!weaponProp.isNew">
     <ng-container *ngIf="isViewMode; else editMode">
         <mat-card-title class="d-flex justify-content-between mb-0">
             {{weaponProp.name}}
