@@ -12,7 +12,6 @@ import { WeaponService } from 'src/app/services/weapon.service';
 })
 export class WeaponsTableComponent implements OnInit {
   weapons$: Observable<Array<Weapon>>;
-  error: string;
   sortedWeapons: {type: WeaponType, displayName: string, isOpen: boolean, weapons: Array<Weapon>}[] = [
     {
       type: WeaponType.ПростоеРукопашное,
@@ -68,9 +67,6 @@ export class WeaponsTableComponent implements OnInit {
           })
           return weapons
         }));
-      },
-      error => {
-        this.error = `${error.message} : ${error.error}`;
       }
     );
   }
