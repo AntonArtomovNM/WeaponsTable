@@ -30,6 +30,7 @@ export class WeaponFormComponent implements OnInit {
   ) { 
     this.form = this.fb.group({
       name: [null, [Validators.required]],
+      isExotic: [null],
       damage: this.fb.group({
         diceType: [null, [Validators.required]],
         diceAmount: [null, [Validators.required]],

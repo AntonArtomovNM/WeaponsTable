@@ -1,7 +1,7 @@
 <ng-container *ngIf="weaponsProps$ | async as weaponsProps">
     <br/>
     <div class="text-center">
-        <h1 class="display-4">WEAPON PROPERTIES TABLE</h1>
+        <h1 class="display-4">СВОЙСТВА ОРУЖИЯ</h1>
     </div>
     <br/>
     <mat-divider></mat-divider>
@@ -9,5 +9,6 @@
         <br/>
         <app-weapon-prop-view [weaponProp]="prop"></app-weapon-prop-view>
     </ng-container>
+
     <br/>
 </ng-container>

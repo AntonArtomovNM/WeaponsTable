@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { WeaponProperty } from 'src/app/models/weaponProperty';
 import { WeaponPropertiesService } from 'src/app/services/weapon.properties.service';
 
@@ -22,6 +22,8 @@ export class WeaponPropTableComponent implements OnInit {
   }
 
   private refresh() {
-    this.weaponsProps$ = this.weaponPropService.getWeaponProperties();
+    this.weaponsProps$ = this.weaponPropService.getWeaponProperties().pipe(map(props => {
+      return props.sort((p1, p2) => p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0)
+    }));
   }
 }

@@ -1,7 +1,7 @@
 <ng-container *ngIf="weapons$ | async as weaponsQuery">
     <br/>
     <div class="text-center">
-        <h1 class="display-4">ULTIMATE WEAPON TABLE</h1>
+        <h1 class="display-4">ОРУЖИЕ</h1>
     </div>
     <ng-container *ngFor="let weaponsPerType of sortedWeapons">
         <ng-container *ngIf="weaponsPerType.weapons.length > 0">

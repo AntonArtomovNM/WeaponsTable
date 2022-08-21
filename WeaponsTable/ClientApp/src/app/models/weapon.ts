@@ -8,6 +8,7 @@ export class Weapon {
     id?: string;
     name: string;
     weaponType: WeaponType;
+    isExotic: boolean;
     price: Money;
     weight: number;
     description?: string;
