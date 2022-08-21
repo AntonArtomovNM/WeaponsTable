@@ -9,6 +9,8 @@ namespace WeaponsTable.Models
 
         public WeaponType WeaponType { get; set; }
 
+        public bool IsExotic { get; set; }
+
         public Money Price { get; set; } = new Money();
 
         public float Weight { get; set; }

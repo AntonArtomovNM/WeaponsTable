@@ -5,14 +5,14 @@
 
   <mat-divider vertical class="mr-3 ml-3 h-75"></mat-divider>
 
-  <span role="button" routerLink="/weapons">Weapons</span>
+  <span role="button" routerLink="/weapons">Оружие</span>
   <button mat-icon-button color="primary" (click)="openWeaponDialog()">
     <mat-icon>control_point</mat-icon>
   </button>
 
   <mat-divider vertical class="mr-3 ml-2 h-75"></mat-divider>
 
-  <span role="button" routerLink="/weapon-props">Weapon Properties</span>
+  <span role="button" routerLink="/weapon-props">Свойства Оружия</span>
   <button mat-icon-button color="primary" (click)="openWeaponPropDialog()">
     <mat-icon>control_point</mat-icon>
   </button>
@@ -20,6 +20,6 @@
   <span class="spacer"></span>
 
   <mat-slide-toggle [(ngModel)]="isDarkMode" (change)="changeTheme()">
-    Dark Mode
+    Тёмная тема
   </mat-slide-toggle>
 </mat-toolbar>
