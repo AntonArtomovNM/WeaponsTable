@@ -5,4 +5,5 @@ export class WeaponsPerType {
     displayName: string;
     isOpen: boolean;
     weapons: Weapon[];
+    additionalInfo?: string;
 }
