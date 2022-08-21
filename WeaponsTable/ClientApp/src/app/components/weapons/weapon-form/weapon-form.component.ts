@@ -2,6 +2,7 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { damageTypeOptions, diceOptions, weaponTypeOptions } from 'src/app/forms/weaponFormOptions';
+import { Dice } from 'src/app/models/dice';
 import { Weapon } from 'src/app/models/weapon';
 import { WeaponPropertyLink } from 'src/app/models/weaponPropertyLink';
 import { WeaponPropLinkDialogComponent } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.component';
@@ -30,12 +31,12 @@ export class WeaponFormComponent implements OnInit {
   ) { 
     this.form = this.fb.group({
       name: [null, [Validators.required]],
-      isExotic: [null],
+      isExotic: [false],
       damage: this.fb.group({
-        diceType: [null, [Validators.required]],
-        diceAmount: [null, [Validators.required]],
+        diceType: [null],
+        diceAmount: [null],
       }),
-      damageTypes: [null, [Validators.required]],
+      damageTypes: [null],
       weaponType: [null, [Validators.required]],
       price: this.fb.group({
         pp: [0],
@@ -57,6 +58,10 @@ export class WeaponFormComponent implements OnInit {
     delete formModel.id;
     delete formModel.weaponProperties;
     delete formModel.isNew;
+
+    if (!formModel.damage){
+      formModel.damage = { diceType: null, diceAmount: null};  
+    }
 
     this.form.setValue(formModel);
 
@@ -89,6 +94,15 @@ export class WeaponFormComponent implements OnInit {
       weaponProperties: this.weaponProperties
     } as Weapon;
 
+    if(!this.isDamageRequired()) {
+      delete weapon.damage;
+      delete weapon.damageTypes;
+    }
+
     this.onSave(weapon);
+  }
+
+  isDamageRequired(){
+    return this.form.value.damage?.diceType || this.form.value.damage?.diceAmount || this.form.value.damageTypes?.length > 0;
   }
 }

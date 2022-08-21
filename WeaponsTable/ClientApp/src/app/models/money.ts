@@ -27,6 +27,6 @@ export class Money {
             moneyStr += `${money.cp} мм. `;
         }
 
-        return moneyStr;
+        return moneyStr.length > 0 ? moneyStr : '--';
     }
 }

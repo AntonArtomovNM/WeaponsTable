@@ -1,4 +1,4 @@
 export class Dice {
-    diceType: number;
-    diceAmount: number;
+    diceType: number | null;
+    diceAmount: number | null;
 }
