@@ -12,8 +12,8 @@ export class Weapon {
     price: Money;
     weight: number;
     description?: string;
-    damage: Dice;
-    damageTypes: DamageType[];
+    damage?: Dice;
+    damageTypes?: DamageType[];
     weaponProperties?: WeaponPropertyLink[];
     isNew?: boolean;
 }

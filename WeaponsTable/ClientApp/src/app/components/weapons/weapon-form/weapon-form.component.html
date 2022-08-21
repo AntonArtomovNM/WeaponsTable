@@ -29,12 +29,13 @@
             
             <mat-form-field appearance="legacy" class="mr-3 sm-field">
                 <mat-label>Кол-во</mat-label>
-                <input matInput type="number" formControlName="diceAmount" min="1" pattern="\d*">
+                <input [required]="isDamageRequired()" matInput type="number" formControlName="diceAmount" min="1" pattern="\d*">
             </mat-form-field>
         
             <mat-form-field appearance="legacy" class="mr-3 sm-field">
                 <mat-label>Кость</mat-label>
-                <mat-select formControlName="diceType">
+                <mat-select [required]="isDamageRequired()" formControlName="diceType">
+                    <mat-option>--</mat-option>
                     <mat-option *ngFor="let dice of diceOptions" [value]="dice.value">
                     {{dice.label}}
                     </mat-option>
@@ -44,7 +45,7 @@
 
         <mat-form-field appearance="legacy" class="mr-5">
             <mat-label>Тип Урона</mat-label>
-            <mat-select formControlName="damageTypes" multiple>
+            <mat-select [required]="isDamageRequired()" formControlName="damageTypes" multiple>
                 <mat-option *ngFor="let type of damageTypeOptions" [value]="type.value">
                     {{type.label}}
                 </mat-option>

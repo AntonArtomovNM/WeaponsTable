@@ -17,9 +17,9 @@ namespace WeaponsTable.Models
 
         public string? Description { get; set; }
 
-        public Dice Damage { get; set; } = new Dice();
+        public Dice? Damage { get; set; }
 
-        public IEnumerable<DamageType> DamageTypes { get; set; } = Enumerable.Empty<DamageType>();
+        public IEnumerable<DamageType>? DamageTypes { get; set; }
 
         public IEnumerable<WeaponPropertyLink> WeaponProperties { get; set; } = Enumerable.Empty<WeaponPropertyLink>();
     }

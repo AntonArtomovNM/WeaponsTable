@@ -20,15 +20,19 @@ export class WeaponViewComponent {
     return this.separateWords(WeaponType[value]);
   }
 
-  getDamageTypeDisplayNames(values: DamageType[]): string {
-    return values.map(value => this.separateWords(DamageType[value])).join(', ');
-  }
-
-  getPriceString(price: Money): string{
+  getPriceString(price: Money): string {
     return Money.getValue(price);
   }
 
-  switchViewMode(updatedWeapon: Weapon | null = null){
+  getDamageString(): string {
+    if (this.weapon.damage) {
+      return `${this.weapon.damage.diceAmount}к${this.weapon.damage.diceType} ${this.weapon.damageTypes?.map(type => this.separateWords(DamageType[type])).join(', ') ?? ''}`;
+    }
+
+    return "--";
+  }
+
+  switchViewMode(updatedWeapon: Weapon | null = null) {
     this.isViewMode = !this.isViewMode;
 
     if (updatedWeapon){
