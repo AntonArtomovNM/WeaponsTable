@@ -14,6 +14,10 @@ export const weaponTypeOptions = [
   {
     value: 11,
     label: "Воинское Дальнобойное"
+  },
+  {
+    value: 20,
+    label: "Огнестрельное"
   }
 ]
 
@@ -33,6 +37,9 @@ export const damageTypeOptions = [
 ]
 
 export const diceOptions = [
+  {
+    label: "--"
+  },
   {
     value: 4,
     label: "к4"

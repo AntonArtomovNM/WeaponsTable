@@ -11,8 +11,21 @@
             <div matRipple class="user-select-none cursor-pointer" (click)="toggleType(weaponsPerType)">
                 <h4 class="m-3 d-flex">
                     {{weaponsPerType.displayName}}
+                    <ng-container *ngIf="weaponsPerType.additionalInfo">
+                        <mat-icon 
+                            [matTooltip]="weaponsPerType.additionalInfo" 
+                            matTooltipClass="tool-tip" 
+                            matTooltipPosition="right" 
+                            class="mt-1 ml-1" 
+                            color="primary"
+                        >
+                            help_outline
+                        </mat-icon>
+                    </ng-container>
+
                     <span class="spacer"></span>
-                    <mat-icon class="mt-1" color="primary">
+
+                    <mat-icon class="mt-1">
                         {{weaponsPerType.isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
                     </mat-icon>
                 </h4>

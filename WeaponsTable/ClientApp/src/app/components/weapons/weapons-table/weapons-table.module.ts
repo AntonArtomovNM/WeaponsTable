@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { WeaponViewModule } from '../weapon-view/weapon-view.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -21,6 +22,7 @@ import { WeaponViewModule } from '../weapon-view/weapon-view.module';
     MatIconModule,
     MatButtonModule,
     MatRippleModule,
+    MatTooltipModule,
     WeaponViewModule,
   ]
 })

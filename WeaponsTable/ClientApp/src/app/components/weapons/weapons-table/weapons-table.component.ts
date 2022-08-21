@@ -38,6 +38,13 @@ export class WeaponsTableComponent implements OnInit {
       isOpen: true,
       weapons: [],
     },
+    {
+      type: WeaponType.Огнестрельное,
+      displayName: 'Огнестрельное',
+      isOpen: true,
+      weapons: [],
+      additionalInfo: 'Дальнобойное и крайне смертоносное оружие. Огнестрелами владеют Изобретатели, Воины-Стрелки, Следопыты-Ковбои и персонажи с чертой Стрелок',
+    },
   ];
 
   constructor(
