@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using WeaponsTable.Contracts;
-using WeaponsTable.Models;
+using WeaponsTable.Entities;
 using WeaponsTable.Settings;
 
-namespace WeaponsTable.Services
+namespace WeaponsTable.Providers
 {
     public class WeaponProvider : MongoDbProviderBase<Weapon>, IWeaponProvider
     {

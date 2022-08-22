@@ -1,7 +1,7 @@
 using Serilog;
 using WeaponsTable.Contracts;
 using WeaponsTable.Extensions;
-using WeaponsTable.Services;
+using WeaponsTable.Providers;
 using WeaponsTable.Settings;
 
 Log.Logger = new LoggerConfiguration()

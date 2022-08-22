@@ -3,6 +3,27 @@
     <div class="text-center">
         <h1 class="display-4">ОРУЖИЕ</h1>
     </div>
+
+    <br/>
+    <mat-divider></mat-divider>
+    <br/>
+
+    <mat-card>
+        <mat-card-content>
+            <p>
+                У вашего персонажа может быть мастерство с определенным оружием или целыми категориями. Владение оружием позволяет вам добавить бонус мастерства к броску атаки, которую вы им совершили.
+            </p>
+            <p>
+                Большинство людей могут умело использовать Простое оружие, в то время как Воинское оружие требует более специализированных навыков. 
+                Рукопашное оружие чаще всего используется для атаки по целям в 5 футах от вас, а Дальнобойное - для атаки на расстоянии.
+                Огнестрельное оружие является Дальнобойным, но встречается крайне редко и требует особой подготовки, потому выделено в отдельную категорию.
+            </p>
+            <p>
+                Цена на оружие указана средняя и в самой игре может отличаться, а некоторое оружие вовсе не имеет цены, его можно заполучить только путем создания своими руками.
+            </p>
+        </mat-card-content>
+    </mat-card>
+
     <ng-container *ngFor="let weaponsPerType of sortedWeapons">
         <ng-container *ngIf="weaponsPerType.weapons.length > 0">
             <br/>
@@ -10,7 +31,7 @@
 
             <div matRipple class="user-select-none cursor-pointer" (click)="toggleType(weaponsPerType)">
                 <h4 class="m-3 d-flex">
-                    {{weaponsPerType.displayName}}
+                    {{weaponsPerType.type | weaponTypeName}}
                     <ng-container *ngIf="weaponsPerType.additionalInfo">
                         <mat-icon 
                             [matTooltip]="weaponsPerType.additionalInfo" 

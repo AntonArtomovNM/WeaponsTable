@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { WeaponPropLinkDialogModule } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.module';
+import { CustomPipesModule } from 'src/app/pipes/custom-pipes.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { WeaponPropLinkDialogModule } from '../weapon-prop-link-dialog/weapon-pr
     MatSelectModule,
     MatCheckboxModule,
     WeaponPropLinkDialogModule,
+    CustomPipesModule,
   ],
   exports: [
     WeaponFormComponent

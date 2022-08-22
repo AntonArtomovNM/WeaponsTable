@@ -7,19 +7,19 @@
             </button>
         </mat-card-title>
         <mat-card-subtitle>
-            {{getWeaponTypeDisplayName(weapon.weaponType)}}
+            {{weapon.weaponType | weaponTypeName}}
         </mat-card-subtitle>
 
         <mat-card-content>
             <div class="mb-2">
                 <span class="mr-5 mb-1">
-                    Урон: {{getDamageString()}}
+                    Урон: {{weapon | weaponDamage}}
                 </span>
                 <span class="mr-5 mb-1">
-                    Цена: {{getPriceString(weapon.price)}}
+                    Цена: {{weapon.price | price}}
                 </span>
                 <span class="mr-5 mb-1">
-                    Вес: {{weapon.weight}} кг.
+                    Вес: {{weapon.weight | weight}}
                 </span>
             </div>
             
@@ -29,16 +29,7 @@
                         {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}
                     </mat-chip>
                 </ng-container>
-                <ng-container *ngIf="weapon.isExotic">
-                    <mat-chip 
-                        color="accent" 
-                        selected 
-                        matTooltip="Это оружие встречается только в особых регионах или в узких кругах. За их пределами оно встречается крайне редко и стоит в разы дороже." 
-                        matTooltipClass="tool-tip"
-                    >
-                        Экзотическое
-                    </mat-chip>
-                </ng-container>
+                <app-exotic-property *ngIf="weapon.isExotic"></app-exotic-property>
             </mat-chip-list>
             
             <ng-container *ngIf="weapon.description">

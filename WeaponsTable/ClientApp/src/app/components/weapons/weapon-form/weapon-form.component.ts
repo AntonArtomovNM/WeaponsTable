@@ -2,7 +2,6 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { damageTypeOptions, diceOptions, weaponTypeOptions } from 'src/app/forms/weaponFormOptions';
-import { Dice } from 'src/app/models/dice';
 import { Weapon } from 'src/app/models/weapon';
 import { WeaponPropertyLink } from 'src/app/models/weaponPropertyLink';
 import { WeaponPropLinkDialogComponent } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.component';

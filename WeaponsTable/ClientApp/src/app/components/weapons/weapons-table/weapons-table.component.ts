@@ -15,32 +15,27 @@ export class WeaponsTableComponent implements OnInit {
   weapons$: Observable<Array<Weapon>>;
   sortedWeapons: Array<WeaponsPerType> = [
     {
-      type: WeaponType.ПростоеРукопашное,
-      displayName: 'Простое Рукопашное',
+      type: WeaponType.SimpleMelee,
       isOpen: true,
       weapons: [],
     },
     {
-      type: WeaponType.ПростоеДальнобойное,
-      displayName: 'Простое Дальнобойное',
+      type: WeaponType.SimpleRange,
       isOpen: true,
       weapons: [],
     },
     {
-      type: WeaponType.ВоинскоеРукопашное,
-      displayName: 'Воинское Рукопашное',
+      type: WeaponType.MartialMelee,
       isOpen: true,
       weapons: [],
     },
     {
-      type: WeaponType.ВоинскоеДальнобойное,
-      displayName: 'Воинское Дальнобойное',
+      type: WeaponType.MartialRange,
       isOpen: true,
       weapons: [],
     },
     {
-      type: WeaponType.Огнестрельное,
-      displayName: 'Огнестрельное',
+      type: WeaponType.Firearm,
       isOpen: true,
       weapons: [],
       additionalInfo: 'Дальнобойное и крайне смертоносное оружие. Огнестрелами владеют Изобретатели, Воины-Стрелки, Следопыты-Ковбои и персонажи с чертой Стрелок',

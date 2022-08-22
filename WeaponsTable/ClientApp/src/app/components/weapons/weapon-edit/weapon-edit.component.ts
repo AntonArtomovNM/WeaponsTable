@@ -1,4 +1,3 @@
-import { WeaponPropertyLink } from './../../../models/weaponPropertyLink';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Weapon } from 'src/app/models/weapon';
