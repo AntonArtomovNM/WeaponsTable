@@ -41,7 +41,7 @@ export function getDamageTypeDisplayName(value: DamageType) {
           return 'Излучением';
         }
         case DamageType.Necrotic: {
-          return 'Некрозом';
+          return 'Некротический';
         }
         case DamageType.Lightning: {
           return 'Молнией';
