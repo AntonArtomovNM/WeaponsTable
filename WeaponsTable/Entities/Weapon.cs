@@ -1,7 +1,8 @@
 ﻿using WeaponsTable.Contracts;
 using WeaponsTable.Enums;
+using WeaponsTable.Models;
 
-namespace WeaponsTable.Models
+namespace WeaponsTable.Entities
 {
     public class Weapon : MongoDbObject
     {

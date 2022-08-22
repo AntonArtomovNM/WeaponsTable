@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
+using WeaponsTable.Contracts;
 
-namespace WeaponsTable.Contracts
+namespace WeaponsTable.Providers
 {
     public abstract class MongoDbProviderBase<T> where T : MongoDbObject
     {

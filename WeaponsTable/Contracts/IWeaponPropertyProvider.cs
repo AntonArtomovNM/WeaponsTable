@@ -1,4 +1,4 @@
-﻿using WeaponsTable.Models;
+﻿using WeaponsTable.Entities;
 
 namespace WeaponsTable.Contracts
 {

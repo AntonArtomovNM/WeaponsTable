@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using WeaponsTable.Contracts;
-using WeaponsTable.Models;
+using WeaponsTable.Entities;
 
 namespace WeaponsTable.Controllers
 {
