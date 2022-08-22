@@ -4,7 +4,7 @@ using WeaponsTable.Models;
 
 namespace WeaponsTable.Entities
 {
-    public class Weapon : MongoDbObject
+    public class Weapon : MongoDbEntity
     {
         public string Name { get; set; } = string.Empty;
 
