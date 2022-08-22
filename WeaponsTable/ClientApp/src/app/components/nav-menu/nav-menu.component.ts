@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,8 +11,8 @@ import { StyleService } from 'src/app/services/style.service';
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.less']
 })
-export class NavMenuComponent implements OnInit {
-  isDarkMode: boolean
+export class NavMenuComponent {
+  isDarkMode: boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -21,10 +21,7 @@ export class NavMenuComponent implements OnInit {
     private readonly styleService: StyleService
   ) {
     iconRegistry.addSvgIconLiteral('kcaa_logo', sanitizer.bypassSecurityTrustHtml(kcaaSvg));
-  }
-
-  ngOnInit() {
-    this.changeTheme();
+    this.setTheme();
   }
 
   openWeaponDialog(): void {
@@ -41,6 +38,10 @@ export class NavMenuComponent implements OnInit {
 
   changeTheme() {
     this.isDarkMode = !this.isDarkMode;
+    this.setTheme();
+  }
+
+  private setTheme(){
     const theme = this.isDarkMode ? "dark-mode" : "light-mode";
     this.styleService.setStyle(`${theme}.css`);
   }

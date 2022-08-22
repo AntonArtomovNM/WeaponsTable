@@ -8,8 +8,8 @@
             <mat-form-field appearance="legacy" class="ml-5">
                 <mat-label>Тип</mat-label>
                 <mat-select formControlName="weaponType">
-                    <mat-option *ngFor="let type of weaponTypeOptions" [value]="type.value">
-                    {{type.label}}
+                    <mat-option *ngFor="let type of weaponTypeOptions" [value]="type">
+                    {{type | weaponTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -45,8 +45,8 @@
         <mat-form-field appearance="legacy" class="mr-5">
             <mat-label>Тип Урона</mat-label>
             <mat-select [required]="isDamageRequired()" formControlName="damageTypes" multiple>
-                <mat-option *ngFor="let type of damageTypeOptions" [value]="type.value">
-                    {{type.label}}
+                <mat-option *ngFor="let type of damageTypeOptions" [value]="type">
+                    {{type | damageTypeName}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

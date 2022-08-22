@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { WeaponViewModule } from '../weapon-view/weapon-view.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { CustomPipesModule } from 'src/app/pipes/custom-pipes.module';
 
 
 
@@ -23,7 +25,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatRippleModule,
     MatTooltipModule,
+    MatCardModule,
     WeaponViewModule,
+    CustomPipesModule,
   ]
 })
 export class WeaponsTableModule { }

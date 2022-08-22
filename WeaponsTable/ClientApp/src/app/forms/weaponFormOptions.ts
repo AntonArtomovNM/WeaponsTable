@@ -1,39 +1,19 @@
+import { DamageType } from 'src/app/enums/damageType';
+import { WeaponType } from 'src/app/enums/weaponType';
+
 export const weaponTypeOptions = [
-  {
-    value: 1,
-    label: "Простое Рукопашное"
-  },
-  {
-    value: 2,
-    label: "Простое Дальнобойное"
-  },
-  {
-    value: 10,
-    label: "Воинское Рукопашное"
-  },
-  {
-    value: 11,
-    label: "Воинское Дальнобойное"
-  },
-  {
-    value: 20,
-    label: "Огнестрельное"
-  }
+  WeaponType.SimpleMelee,
+  WeaponType.SimpleRange,
+  WeaponType.MartialMelee,
+  WeaponType.MartialRange,
+  WeaponType.Firearm,
 ]
 
 export const damageTypeOptions = [
-  {
-    value: 1,
-    label: "Рубящий"
-  },
-  {
-    value: 2,
-    label: "Колющий"
-  },
-  {
-    value: 3,
-    label: "Дробящий"
-  },
+  DamageType.Slashing,
+  DamageType.Piercing,
+  DamageType.Bludgeoning,
+  DamageType.Fire,
 ]
 
 export const diceOptions = [
