@@ -9,10 +9,10 @@ namespace WeaponsTable.Controllers
     [Route("[controller]/weapons")]
     public class DataController : ControllerBase
     {
-        private readonly IWeaponProvider _weaponProvider;
-        private readonly IWeaponPropertyProvider _weaponPropertyProvider;
+        private readonly IWeaponRepository _weaponProvider;
+        private readonly IWeaponPropertyRepository _weaponPropertyProvider;
 
-        public DataController(IWeaponProvider weaponProvider, IWeaponPropertyProvider weaponPropertyProvider)
+        public DataController(IWeaponRepository weaponProvider, IWeaponPropertyRepository weaponPropertyProvider)
         {
             _weaponProvider = weaponProvider;
             _weaponPropertyProvider = weaponPropertyProvider;
@@ -23,7 +23,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var weapons = await _weaponProvider.GetWeaponList();
+                var weapons = await _weaponProvider.GetAll();
 
                 return Ok(weapons);
             }
@@ -40,7 +40,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var createdWeapon = await _weaponProvider.CreateWeapon(weapon);
+                var createdWeapon = await _weaponProvider.Create(weapon);
 
                 return Ok(createdWeapon);
             }
@@ -57,7 +57,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var updatedWeapon = await _weaponProvider.UpdateWeapon(weapon);
+                var updatedWeapon = await _weaponProvider.Update(weapon);
 
                 return Ok(updatedWeapon);
             }
@@ -75,7 +75,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                await _weaponProvider.DeleteWeapon(weaponId);
+                await _weaponProvider.Delete(weaponId);
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var weaponProperties = await _weaponPropertyProvider.GetWeaponPropertyList();
+                var weaponProperties = await _weaponPropertyProvider.GetAll();
 
                 return Ok(weaponProperties);
             }
@@ -111,7 +111,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var createdWeaponProperty = await _weaponPropertyProvider.CreateWeaponProperty(weaponProperty);
+                var createdWeaponProperty = await _weaponPropertyProvider.Create(weaponProperty);
 
                 return Ok(createdWeaponProperty);
             }
@@ -129,7 +129,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                var updatedWeaponProperty = await _weaponPropertyProvider.UpdateWeaponProperty(weaponProperty);
+                var updatedWeaponProperty = await _weaponPropertyProvider.Update(weaponProperty);
 
                 return Ok(updatedWeaponProperty);
             }
@@ -147,7 +147,7 @@ namespace WeaponsTable.Controllers
         {
             try
             {
-                await _weaponPropertyProvider.DeleteWeaponProperty(weaponPropertyId);
+                await _weaponPropertyProvider.Delete(weaponPropertyId);
                 await _weaponProvider.RemovePropertyLink(weaponPropertyId);
             }
             catch (Exception ex)

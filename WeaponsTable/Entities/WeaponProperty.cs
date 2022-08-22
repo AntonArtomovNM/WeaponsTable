@@ -2,7 +2,7 @@
 
 namespace WeaponsTable.Entities
 {
-    public class WeaponProperty : MongoDbObject
+    public class WeaponProperty : MongoDbEntity
     {
         public string Name { get; set; } = string.Empty;
 

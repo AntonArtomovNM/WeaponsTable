@@ -2,7 +2,7 @@
 
 namespace WeaponsTable.Contracts
 {
-    public abstract class MongoDbObject
+    public abstract class MongoDbEntity
     {
         [BsonId]
         public Guid Id { get; set; } = Guid.NewGuid();

@@ -1,7 +1,10 @@
+using MongoDB.Driver;
 using Serilog;
+using SimpleInjector;
 using WeaponsTable.Contracts;
+using WeaponsTable.Entities;
 using WeaponsTable.Extensions;
-using WeaponsTable.Providers;
+using WeaponsTable.Repositories;
 using WeaponsTable.Settings;
 
 Log.Logger = new LoggerConfiguration()
@@ -9,17 +12,24 @@ Log.Logger = new LoggerConfiguration()
     .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-IConfiguration config = builder.Configuration;
+IConfiguration configuration = builder.Configuration;
 
+var container = new Container();
+
+
+// Add logging
 builder.Host.UseSerilog();
+builder.Services.AddLogging(configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddLogging(config);
-builder.Services.AddScoped<IWeaponProvider, WeaponProvider>();
-builder.Services.AddScoped<IWeaponPropertyProvider, WeaponPropertyProvider>();
-
-builder.Services.Configure<MongoDbSettings>(config.GetSection(MongoDbSettings.SectionKey));
+builder.Services.AddSimpleInjector(container, options =>
+{
+    options.AddLogging()
+           .AddAspNetCore()
+           .AddControllerActivation();
+});
+container.Initialize(configuration);
 
 var app = builder.Build();
 
@@ -27,6 +37,9 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
 }
+
+app.Services.UseSimpleInjector(container);
+container.Verify();
 
 app.UseStaticFiles();
 app.UseRouting();
