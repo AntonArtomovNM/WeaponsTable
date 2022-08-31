@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeaponEditComponent } from './weapon-edit.component';
+import { WeaponFormDialogComponent } from './weapon-form-dialog.component';
 
-describe('WeaponEditComponent', () => {
-  let component: WeaponEditComponent;
-  let fixture: ComponentFixture<WeaponEditComponent>;
+describe('WeaponFormDialogComponent', () => {
+  let component: WeaponFormDialogComponent;
+  let fixture: ComponentFixture<WeaponFormDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeaponEditComponent ]
+      declarations: [ WeaponFormDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WeaponEditComponent);
+    fixture = TestBed.createComponent(WeaponFormDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

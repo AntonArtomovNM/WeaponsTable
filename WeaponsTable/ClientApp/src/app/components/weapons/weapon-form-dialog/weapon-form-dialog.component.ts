@@ -1,33 +1,30 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { damageTypeOptions, diceOptions, weaponTypeOptions } from 'src/app/forms/weaponFormOptions';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { weaponTypeOptions, diceOptions, damageTypeOptions } from 'src/app/forms/weaponFormOptions';
 import { Weapon } from 'src/app/models/weapon';
 import { WeaponPropertyLink } from 'src/app/models/weaponPropertyLink';
 import { WeaponPropLinkDialogComponent } from '../weapon-prop-link-dialog/weapon-prop-link-dialog.component';
 
 @Component({
-  selector: 'app-weapon-form',
-  templateUrl: './weapon-form.component.html',
-  styleUrls: ['./weapon-form.component.less']
+  selector: 'app-weapon-form-dialog',
+  templateUrl: './weapon-form-dialog.component.html',
+  styleUrls: ['./weapon-form-dialog.component.less']
 })
-export class WeaponFormComponent implements OnInit {
-  @Input() model: Weapon;
-  @Input() onSave: Function;
-  @Input() headerButtonsTemplate: TemplateRef<any>;
-  @Input() footerButtonsTemplate: TemplateRef<any>;
-  
+export class WeaponFormDialogComponent implements OnInit {
   form: FormGroup;
   weaponProperties: Array<WeaponPropertyLink> = [];
-
+  
   weaponTypeOptions = weaponTypeOptions;
   diceOptions = diceOptions;
   damageTypeOptions = damageTypeOptions;
-  
+
   constructor(
-    public dialog: MatDialog,
-    private fb: FormBuilder,
-  ) { 
+    @Inject(MAT_DIALOG_DATA) public readonly data: WeaponFormDialogData,
+    private readonly dialogRef: MatDialogRef<WeaponFormDialogComponent>,
+    private readonly dialog: MatDialog,
+    readonly fb: FormBuilder,
+    ) {
     this.form = this.fb.group({
       name: [null, [Validators.required]],
       isExotic: [false],
@@ -49,11 +46,11 @@ export class WeaponFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.model){
+    if (!this.data.model){
       return;
     }
 
-    const formModel = {...this.model};
+    const formModel = {...this.data.model};
     delete formModel.id;
     delete formModel.weaponProperties;
     delete formModel.isNew;
@@ -64,8 +61,8 @@ export class WeaponFormComponent implements OnInit {
 
     this.form.setValue(formModel);
 
-    if (this.model.weaponProperties){
-      this.weaponProperties = [...this.model.weaponProperties];
+    if (this.data.model.weaponProperties){
+      this.weaponProperties = [...this.data.model.weaponProperties];
     }
   }
 
@@ -88,7 +85,7 @@ export class WeaponFormComponent implements OnInit {
 
   saveWeapon(){
     const weapon = {
-      id: this.model?.id,
+      id: this.data.model?.id,
       ...this.form.value,
       weaponProperties: this.weaponProperties
     } as Weapon;
@@ -98,10 +95,19 @@ export class WeaponFormComponent implements OnInit {
       delete weapon.damageTypes;
     }
 
-    this.onSave(weapon);
+    return weapon;
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
   isDamageRequired(){
     return this.form.value.damage?.diceType || this.form.value.damage?.diceAmount || this.form.value.damageTypes?.length > 0;
   }
+}
+
+export interface WeaponFormDialogData {
+  model: Weapon;
+  operation: string;
 }

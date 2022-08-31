@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeaponPropFormComponent } from './weapon-prop-form.component';
+import { WeaponTableSectionComponent } from './weapon-table-section.component';
 
-describe('WeaponPropFormComponent', () => {
-  let component: WeaponPropFormComponent;
-  let fixture: ComponentFixture<WeaponPropFormComponent>;
+describe('WeaponTableSectionComponent', () => {
+  let component: WeaponTableSectionComponent;
+  let fixture: ComponentFixture<WeaponTableSectionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeaponPropFormComponent ]
+      declarations: [ WeaponTableSectionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WeaponPropFormComponent);
+    fixture = TestBed.createComponent(WeaponTableSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

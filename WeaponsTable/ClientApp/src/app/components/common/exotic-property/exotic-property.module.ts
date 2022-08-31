@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExoticPropertyComponent } from './exotic-property.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -12,8 +12,8 @@ import { ExoticPropertyComponent } from './exotic-property.component';
   ],
   imports: [
     CommonModule,
-    MatChipsModule,
     MatTooltipModule,
+    MatIconModule,
   ],
   exports: [
     ExoticPropertyComponent

@@ -41,6 +41,7 @@ export class WeaponService {
   updateWeapon(weapon: Weapon){
     return this.http.post(this.weaponsEndpoint, weapon).pipe(tap(_ => {
       this.cacheService.clearCache();
+      this.shouldRefresh.emit();
     }));
   }
 

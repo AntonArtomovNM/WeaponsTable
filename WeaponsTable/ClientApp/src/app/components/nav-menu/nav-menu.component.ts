@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { WeaponAddDialogComponent } from '../weapons/weapon-add-dialog/weapon-add-dialog.component';
-import { WeaponPropAddDialogComponent } from '../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.component';
 import { StyleService } from 'src/app/services/style.service';
+import { WeaponService } from 'src/app/services/weapon.service';
+import { WeaponFormDialogComponent } from '../weapons/weapon-form-dialog/weapon-form-dialog.component';
+import { WeaponPropFormDialogComponent } from '../weapon-props/weapon-prop-form-dialog/weapon-prop-form-dialog.component';
+import { WeaponPropertiesService } from 'src/app/services/weapon.properties.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -15,24 +17,40 @@ export class NavMenuComponent {
   isDarkMode: boolean = true;
 
   constructor(
-    public dialog: MatDialog,
+    private readonly dialog: MatDialog,
+    private readonly styleService: StyleService,
+    private readonly weaponService: WeaponService,
+    private readonly weaponPropService: WeaponPropertiesService,
     readonly iconRegistry: MatIconRegistry, 
     readonly sanitizer: DomSanitizer,
-    private readonly styleService: StyleService
   ) {
     iconRegistry.addSvgIconLiteral('kcaa_logo', sanitizer.bypassSecurityTrustHtml(kcaaSvg));
     this.setTheme();
   }
 
-  openWeaponDialog(): void {
-    this.dialog.open(WeaponAddDialogComponent, {
+  addWeapon(): void {
+    const dialogRef = this.dialog.open(WeaponFormDialogComponent, {
       width: '1000px',
+      data: {operation: 'Добавить'}
+    });
+
+    dialogRef.afterClosed().subscribe(weapon => {
+      if (weapon) {
+        this.weaponService.createWeapon(weapon).subscribe();
+      }
     });
   }
 
-  openWeaponPropDialog(): void {
-    this.dialog.open(WeaponPropAddDialogComponent, {
+  addWeaponProp(): void {
+    const dialogRef = this.dialog.open(WeaponPropFormDialogComponent, {
       width: '1000px',
+      data: {operation: 'Добавить'}
+    });
+
+    dialogRef.afterClosed().subscribe(weaponProp => {
+      if (weaponProp) {
+        this.weaponPropService.createWeaponProperty(weaponProp).subscribe();
+      }
     });
   }
 

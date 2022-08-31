@@ -1,12 +1,5 @@
 <ng-container *ngIf="weapons$ | async as weaponsQuery">
-    <br/>
-    <div class="text-center">
-        <h1 class="display-4">ОРУЖИЕ</h1>
-    </div>
-
-    <br/>
-    <mat-divider></mat-divider>
-    <br/>
+    <h1 class="display-4">ОРУЖИЕ</h1>
 
     <mat-card>
         <mat-card-content>
@@ -19,50 +12,13 @@
                 Огнестрельное оружие является Дальнобойным, но встречается крайне редко и требует особой подготовки, потому выделено в отдельную категорию.
             </p>
             <p>
-                Помимо того, что вы можете купить оружие, вы можете попробовать создать его самостоятельно, если владеете подходящими инструментами. А некоторое оружие вовсе не имеет цены, его можно заполучить только путем создания своими руками.
+                Помимо того, что вы можете купить оружие, вы можете попробовать создать его самостоятельно, если владеете подходящими инструментами. А некоторое оружие вовсе не имеет цены и его можно заполучить только создав своими руками.
             </p>
         </mat-card-content>
     </mat-card>
 
     <ng-container *ngFor="let weaponsPerType of sortedWeapons">
-        <ng-container *ngIf="weaponsPerType.weapons.length > 0">
-            <br/>
-            <mat-divider></mat-divider>
-
-            <div matRipple class="user-select-none cursor-pointer" (click)="toggleType(weaponsPerType)">
-                <h4 class="m-3 d-flex">
-                    {{weaponsPerType.type | weaponTypeName}}
-                    <ng-container *ngIf="weaponsPerType.additionalInfo">
-                        <mat-icon 
-                            [matTooltip]="weaponsPerType.additionalInfo" 
-                            matTooltipClass="tool-tip" 
-                            matTooltipPosition="right" 
-                            class="mt-1 ml-1" 
-                            color="primary"
-                        >
-                            help_outline
-                        </mat-icon>
-                    </ng-container>
-
-                    <span class="spacer"></span>
-
-                    <mat-icon class="mt-1">
-                        {{weaponsPerType.isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
-                    </mat-icon>
-                </h4>
-            </div>
-            <mat-divider></mat-divider>
-
-            <ng-container *ngIf="weaponsPerType.isOpen">
-                <ng-container *ngFor="let weapon of weaponsPerType.weapons">
-                    <br/>
-                    <app-weapon-view [weapon]="weapon"></app-weapon-view>
-                </ng-container>
-            </ng-container>
-        </ng-container>
+        <app-weapon-table-section [weaponSection]="weaponsPerType"></app-weapon-table-section>
     </ng-container>
-    
-    <br/>
-    <br/>
 </ng-container>
 
