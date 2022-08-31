@@ -1,15 +1,7 @@
 <ng-container *ngIf="weaponsProps$ | async as weaponsProps">
-    <br/>
-    <div class="text-center">
-        <h1 class="display-4">СВОЙСТВА ОРУЖИЯ</h1>
-    </div>
-    <br/>
-    <mat-divider></mat-divider>
+    <h1 class="display-4">СВОЙСТВА ОРУЖИЯ</h1>
+
     <ng-container *ngFor="let prop of weaponsProps">
-        <br/>
         <app-weapon-prop-view [weaponProp]="prop"></app-weapon-prop-view>
     </ng-container>
-
-    <br/>
-    <br/>
 </ng-container>

@@ -8,8 +8,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { WeaponAddDialogModule } from '../weapons/weapon-add-dialog/weapon-add-dialog.module';
-import { WeaponPropAddDialogModule } from '../weapon-props/weapon-prop-add-dialog/weapon-prop-add-dialog.module';
 import { StyleService } from 'src/app/services/style.service';
 import { FormsModule } from '@angular/forms';
 
@@ -28,8 +26,6 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatSlideToggleModule,
     MatToolbarModule,
-    WeaponAddDialogModule,
-    WeaponPropAddDialogModule,
   ],
   exports: [
     NavMenuComponent

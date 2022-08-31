@@ -29,7 +29,7 @@ export class PricePipe implements PipeTransform {
           price += `${value.cp} мм. `;
         }
 
-        return price.length > 0 ? price : '-- (можно только создать)';
+        return price.length > 0 ? price : 'Можно только создать';
   }
 
 }

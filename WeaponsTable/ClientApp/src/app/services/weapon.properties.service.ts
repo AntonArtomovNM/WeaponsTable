@@ -43,6 +43,7 @@ export class WeaponPropertiesService {
   updateWeaponProperty(weapon: WeaponProperty){
     return this.http.post(this.weaponPropsEndpoint, weapon).pipe(tap(_ => {
       this.propertyCacheService.clearCache();
+      this.shouldRefresh.emit();
     }));
   }
 

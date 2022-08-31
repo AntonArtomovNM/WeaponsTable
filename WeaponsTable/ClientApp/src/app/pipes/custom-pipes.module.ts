@@ -5,6 +5,7 @@ import { WeaponDamagePipe } from './weapon-damage.pipe';
 import { PricePipe } from './price.pipe';
 import { WeaponTypeNamePipe } from './weapon-type-name.pipe';
 import { WeightPipe } from './weight.pipe';
+import { WeaponDamageTypesPipe } from './weapon-damage-types.pipe';
 
 
 
@@ -15,6 +16,7 @@ import { WeightPipe } from './weight.pipe';
     PricePipe,
     WeaponTypeNamePipe,
     WeightPipe,
+    WeaponDamageTypesPipe,
   ],
   imports: [
     CommonModule
@@ -25,6 +27,7 @@ import { WeightPipe } from './weight.pipe';
     PricePipe,
     WeaponTypeNamePipe,
     WeightPipe,
+    WeaponDamageTypesPipe,
   ]
 })
 export class CustomPipesModule { }

@@ -19,10 +19,10 @@ export class WeaponPropLinkDialogComponent implements OnInit {
   formControl = new FormControl();
   
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: WeaponPropLinkDialogData,
-    public dialogRef: MatDialogRef<WeaponPropLinkDialogComponent>,
-    private fb: FormBuilder,
-    weaponPropService: WeaponPropertiesService,
+    @Inject(MAT_DIALOG_DATA) public readonly data: WeaponPropLinkDialogData,
+    private readonly dialogRef: MatDialogRef<WeaponPropLinkDialogComponent>,
+    private readonly fb: FormBuilder,
+    readonly weaponPropService: WeaponPropertiesService,
   ) {
     this.form = this.fb.group({
       propertyId: [null, [Validators.required]],

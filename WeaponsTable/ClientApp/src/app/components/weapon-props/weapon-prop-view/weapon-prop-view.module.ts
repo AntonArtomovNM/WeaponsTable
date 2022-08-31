@@ -1,3 +1,4 @@
+import { MatBadgeModule } from '@angular/material/badge';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeaponPropViewComponent } from './weapon-prop-view.component';
@@ -5,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import { WeaponPropEditModule } from '../weapon-prop-edit/weapon-prop-edit.module';
-import { MatBadgeModule } from '@angular/material/badge';
+import { WeaponPropFormDialogModule } from '../weapon-prop-form-dialog/weapon-prop-form-dialog.module';
+import { DeleteDialogModule } from '../../common/delete-dialog/delete-dialog.module';
 
 
 
@@ -21,7 +22,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatCardModule,
     MatDividerModule,
     MatBadgeModule,
-    WeaponPropEditModule,
+    WeaponPropFormDialogModule,
+    DeleteDialogModule,
   ],
   exports: [
     WeaponPropViewComponent
