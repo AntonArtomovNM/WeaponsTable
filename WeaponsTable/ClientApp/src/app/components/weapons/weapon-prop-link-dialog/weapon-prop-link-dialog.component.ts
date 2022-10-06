@@ -30,7 +30,7 @@ export class WeaponPropLinkDialogComponent implements OnInit {
     });
 
     weaponPropService.getWeaponProperties().subscribe(result => {
-      this.weaponProps = result.filter(p => !data.existingPropIds.find(id => p.id === id));
+      this.weaponProps = result.filter(p => !data.existingPropIds.find(id => p.id === id)).sort((p1, p2) => p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0);
     })
   }
 
