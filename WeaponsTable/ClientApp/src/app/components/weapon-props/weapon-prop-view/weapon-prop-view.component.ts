@@ -1,3 +1,4 @@
+import { OperationType } from './../../../enums/operationType';
 import { WeaponProperty } from './../../../models/weaponProperty';
 import { Component, Input, OnInit } from '@angular/core';
 import { WeaponPropertiesService } from 'src/app/services/weapon.properties.service';
@@ -24,7 +25,7 @@ export class WeaponPropViewComponent implements OnInit {
   editWeaponProp() {
     const dialogRef = this.dialog.open(WeaponPropFormDialogComponent, {
       width: '1000px',
-      data: {model: this.weaponProp, operation: 'Изменить'}
+      data: {model: this.weaponProp, operation: OperationType.Update}
     });
 
     dialogRef.afterClosed().subscribe(updatedProp => {
@@ -39,7 +40,7 @@ export class WeaponPropViewComponent implements OnInit {
       width: '500px',
       data: {
         name: this.weaponProp.name, 
-        type: "свойство",
+        type: "властивість",
         onDelete: () => {
           if (this.weaponProp.id) {
             this.weaponPropService.deleteWeaponProperty(this.weaponProp.id).subscribe()

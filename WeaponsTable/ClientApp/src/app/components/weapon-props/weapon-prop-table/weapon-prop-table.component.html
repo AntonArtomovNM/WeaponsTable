@@ -1,7 +1,9 @@
-<ng-container *ngIf="weaponsProps$ | async as weaponsProps">
-    <h1 class="display-4">СВОЙСТВА ОРУЖИЯ</h1>
+<ng-container *ngIf="weaponsProps$ | async as weaponProps">
+    <h1 class="display-4">Властивості Зброї</h1>
 
-    <ng-container *ngFor="let prop of weaponsProps">
+    <app-search-field (onSearch)="onSearch(weaponProps, $event)"></app-search-field>
+
+    <ng-container *ngFor="let prop of filteredWeaponProps">
         <app-weapon-prop-view [weaponProp]="prop"></app-weapon-prop-view>
     </ng-container>
 </ng-container>

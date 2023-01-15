@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CustomPipesModule } from 'src/app/pipes/custom-pipes.module';
 
 
 
@@ -24,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    CustomPipesModule,
   ],
   exports: [
     WeaponPropFormDialogComponent

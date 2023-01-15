@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { map, Observable } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { WeaponType } from 'src/app/enums/weaponType';
 import { Weapon } from 'src/app/models/weapon';
+import { WeaponProperty } from 'src/app/models/weaponProperty';
 import { WeaponsPerType } from 'src/app/models/weaponsPerType';
 import { WeaponPropertiesService } from 'src/app/services/weapon.properties.service';
 import { WeaponService } from 'src/app/services/weapon.service';
@@ -14,7 +15,13 @@ import { WeaponService } from 'src/app/services/weapon.service';
   viewProviders: [MatExpansionPanel],
 })
 export class WeaponsTableComponent implements OnInit {
-  weapons$: Observable<Array<Weapon>>;
+  data$: Observable<[
+    weapons: Array<Weapon>,
+    weaponProps: Array<WeaponProperty>
+  ]>;
+
+  lastUsedFilter = '';
+  weapons: Array<Weapon>;
   sortedWeapons: Array<WeaponsPerType> = [
     {
       type: WeaponType.SimpleMelee,
@@ -35,11 +42,11 @@ export class WeaponsTableComponent implements OnInit {
     {
       type: WeaponType.Firearm,
       weapons: [],
-      additionalInfo: `Дальнобойное и крайне смертоносное оружие. Огнестрелами владеют Изобретатели, Воины-Стрелки, Следопыты-Ковбои и персонажи с чертой Стрелок.
+      additionalInfo: `Дальнобійна та вкрай смертоносна зброя. Вогнепалами володіють Винахідники, Воїни Стрільці та персонажі з рисою Стрілець.
       
-      Каждое огнестрельное оружие требует свои собственные патроны для совершения атаки, и из-за редкости найти или купить их может быть практически невозможно. Однако, если материалы собраны, вы можете самостоятельно изготовить боеприпасы с помощью Инструментов Лудильщика за половину стоимости.
+      Кожна вогнепальна зброя вимагає свої власні набої для здійснення атаки, які може бути складно знайти. Однак, якщо матеріали зібрані, ви можете самостійно виготовити до 20 набоїв за допомогою Інструментів Лудильника як частина Короткого або Тривалого Відпочинку за половину їхньої вартості.
 
-      Иногда в ходе боя ваше огнестрельное оружие может выйти из строя (см. свойство осечка) и вам нужно будет потратить действие, чтобы попытаться его починить. Чтобы это сделать, вы должны пройти успешную проверку Инструментов Лудильщика (Сл 8 + значение осечки). Если проверка не пройдена, оружие сломано и должно быть починено вне боя за четверть его стоимости. `,
+      Іноді під час бою ваша вогнепальна зброя може вийти з ладу (див. властивість Осічка) і вам потрібно буде витратити дію, щоб спробувати її відремонтувати. Щоб це зробити, ви повинні пройти успішну перевірку Інструментів Лудильника (Скл: 8 + значення осічки). Якщо перевірку не пройдено, зброя зламана і має бути полагоджена як частина Короткого або Тривалого Відпочинку за чверть її вартості.`,
     },
   ];
 
@@ -55,21 +62,37 @@ export class WeaponsTableComponent implements OnInit {
     this.refresh();
   }
 
-  private refresh() {
+  onSearch(filterValue: string): void {
+    this.lastUsedFilter = filterValue;
+    const filteredWeapons = this.weapons.filter(w => w.name.toLowerCase().includes(this.lastUsedFilter));
+
+    this.sortWeapons(filteredWeapons);
+  }
+
+  private refresh() : void {
+    this.data$ = combineLatest([
+      this.weaponService.getWeapons(),
+      this.weaponPropService.getWeaponProperties()
+    ]).pipe(map(data => {
+      this.weapons = data[0];
+      const weaponProps = data[1];
+
+      this.weapons.sort(this.compareWeapons).forEach(w => {
+        w.weaponProperties?.forEach(wp => wp.data = weaponProps.find(x => x.id === wp.propertyId));
+      })
+
+      this.onSearch(this.lastUsedFilter);
+      
+      return data;
+    }));
+  }
+
+  private sortWeapons(weapons: Array<Weapon>): void {
     this.sortedWeapons.forEach(sw => sw.weapons = []);
 
-    this.weaponPropService.getWeaponProperties().subscribe(
-      weaponProps =>{
-        this.weapons$ = this.weaponService.getWeapons().pipe(map(weapons => {
-          weapons.sort(this.compareWeapons).forEach(w => {
-            w.weaponProperties?.forEach(wp => wp.data = weaponProps.find(x => x.id === wp.propertyId));
-
-            this.sortedWeapons.find(sw => sw.type === w.weaponType)?.weapons.push(w);
-          })
-          return weapons
-        }));
-      }
-    );
+    weapons.forEach(w => {
+      this.sortedWeapons.find(sw => sw.type === w.weaponType)?.weapons.push(w);
+    })
   }
 
   private compareWeapons(w1: Weapon, w2: Weapon): number {

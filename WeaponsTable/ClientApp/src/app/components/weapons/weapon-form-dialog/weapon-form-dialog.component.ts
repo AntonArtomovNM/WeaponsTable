@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OperationType } from 'src/app/enums/operationType';
 import { weaponTypeOptions, diceOptions, damageTypeOptions } from 'src/app/forms/weaponFormOptions';
 import { Weapon } from 'src/app/models/weapon';
 import { WeaponPropertyLink } from 'src/app/models/weaponPropertyLink';
@@ -109,5 +110,5 @@ export class WeaponFormDialogComponent implements OnInit {
 
 export interface WeaponFormDialogData {
   model: Weapon;
-  operation: string;
+  operation: OperationType;
 }

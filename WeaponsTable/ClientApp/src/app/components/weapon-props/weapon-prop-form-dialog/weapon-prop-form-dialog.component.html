@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>
     <div class="form-title">
-        {{data.operation}} свойство
+        {{data.operation | operationTypeName}} властивість
         <button mat-icon-button (click)="closeDialog()">
             <mat-icon>clear</mat-icon>
         </button>
@@ -10,18 +10,18 @@
 <div mat-dialog-content>
     <form [formGroup]="form">
         <mat-form-field appearance="legacy">
-            <mat-label>Название</mat-label>
+            <mat-label>Назва</mat-label>
             <input matInput formControlName="name">
         </mat-form-field>
         
         <mat-form-field appearance="legacy" class="full-width">
-            <mat-label>Описание</mat-label>
+            <mat-label>Опис</mat-label>
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
         
         <div mat-dialog-actions class="d-flex justify-content-between">
-            <button mat-raised-button type="button" (click)="closeDialog()">Отмена</button>
-            <button mat-raised-button color="primary" type="button" [disabled]="!form.valid" [mat-dialog-close]="saveWeaponProp()">Сохранить</button>
+            <button mat-raised-button type="button" (click)="closeDialog()">Скасувати</button>
+            <button mat-raised-button color="primary" type="button" [disabled]="!form.valid" [mat-dialog-close]="saveWeaponProp()">Зберегти</button>
         </div>
     </form>
 </div>

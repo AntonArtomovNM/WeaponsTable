@@ -1,3 +1,4 @@
+import { SearchFieldModule } from './../../common/search-field/search-field.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeaponsTableComponent } from './weapons-table.component';
@@ -18,6 +19,7 @@ import { WeaponTableSectionModule } from '../weapon-table-section/weapon-table-s
     MatButtonModule,
     MatCardModule,
     WeaponTableSectionModule,
+    SearchFieldModule,
   ]
 })
 export class WeaponsTableModule { }

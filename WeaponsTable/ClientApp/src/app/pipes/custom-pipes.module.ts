@@ -6,6 +6,7 @@ import { PricePipe } from './price.pipe';
 import { WeaponTypeNamePipe } from './weapon-type-name.pipe';
 import { WeightPipe } from './weight.pipe';
 import { WeaponDamageTypesPipe } from './weapon-damage-types.pipe';
+import { OperationTypeNamePipe } from './operation-type-name.pipe';
 
 
 
@@ -17,6 +18,7 @@ import { WeaponDamageTypesPipe } from './weapon-damage-types.pipe';
     WeaponTypeNamePipe,
     WeightPipe,
     WeaponDamageTypesPipe,
+    OperationTypeNamePipe,
   ],
   imports: [
     CommonModule
@@ -28,6 +30,7 @@ import { WeaponDamageTypesPipe } from './weapon-damage-types.pipe';
     WeaponTypeNamePipe,
     WeightPipe,
     WeaponDamageTypesPipe,
+    OperationTypeNamePipe,
   ]
 })
 export class CustomPipesModule { }
