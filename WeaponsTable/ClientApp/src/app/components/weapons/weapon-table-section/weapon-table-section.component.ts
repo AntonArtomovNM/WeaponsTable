@@ -1,3 +1,4 @@
+import { OperationType } from './../../../enums/operationType';
 import { WeaponsPerType } from 'src/app/models/weaponsPerType';
 import { Component, Input } from '@angular/core';
 import { Weapon } from 'src/app/models/weapon';
@@ -27,7 +28,7 @@ export class WeaponTableSectionComponent {
   editWeapon(weapon: Weapon){
     const dialogRef = this.dialog.open(WeaponFormDialogComponent, {
       width: '1000px',
-      data: {model: weapon, operation: 'Изменить'}
+      data: {model: weapon, operation: OperationType.Update}
     });
 
     dialogRef.afterClosed().subscribe(updatedWeapon => {
@@ -42,7 +43,7 @@ export class WeaponTableSectionComponent {
       width: '500px',
       data: {
         name: weapon.name, 
-        type: "оружие",
+        type: "зброю",
         onDelete: () => {
           if (weapon.id) {
             this.weaponService.deleteWeapon(weapon.id).subscribe()

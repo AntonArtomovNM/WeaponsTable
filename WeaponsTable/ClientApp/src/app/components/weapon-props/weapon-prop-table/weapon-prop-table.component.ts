@@ -11,6 +11,9 @@ import { WeaponPropertiesService } from 'src/app/services/weapon.properties.serv
 export class WeaponPropTableComponent implements OnInit {
   weaponsProps$: Observable<Array<WeaponProperty>>;
 
+  lastUsedFilter = '';
+  filteredWeaponProps: Array<WeaponProperty>;
+
   constructor(
     private weaponPropService: WeaponPropertiesService
   ) {
@@ -21,9 +24,17 @@ export class WeaponPropTableComponent implements OnInit {
     this.refresh();
   }
 
+  onSearch(weaponProps: Array<WeaponProperty>, filterValue: string): void {
+    this.lastUsedFilter = filterValue;
+    this.filteredWeaponProps = weaponProps.filter(wp => wp.name.toLowerCase().includes(this.lastUsedFilter));
+  }
+
   private refresh() {
     this.weaponsProps$ = this.weaponPropService.getWeaponProperties().pipe(map(props => {
-      return props.sort((p1, p2) => p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0)
+      props.sort((p1, p2) => p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0);
+      this.onSearch(props, this.lastUsedFilter);
+
+      return props;
     }));
   }
 }

@@ -1,7 +1,7 @@
 <ng-container *ngIf="weaponSection.weapons.length > 0">
     <div matRipple class="section-header" (click)="toggleSection()">
         <mat-divider></mat-divider>
-        <div class="section-heading">
+        <div [ngClass]="isOpen ? 'section-heading' : 'section-heading-closed'">
             <h4>{{weaponSection.type | weaponTypeName}}</h4>
             <span class="spacer"></span>
             <mat-icon>
@@ -13,92 +13,94 @@
 
 
     <ng-container *ngIf="isOpen">
-        <ng-container *ngIf="weaponSection.additionalInfo">
-            <mat-card>
-                <mat-card-content>
-                    {{weaponSection.additionalInfo}}
-                </mat-card-content>
-            </mat-card>
-        </ng-container>
-
-        <mat-accordion multi>
-            <ng-container *ngFor="let weapon of weaponSection.weapons">
-                <mat-expansion-panel 
-                    matBadge="New" matBadgeSize="large" matBadgePosition="before" [matBadgeHidden]="!weapon.isNew"
-                    *ngIf="{value: true} as showDescription" 
-                    (opened)="showDescription.value=false" 
-                    (closed)="showDescription.value=true"
-                >
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <div class="double-title">
-                                <h5>{{weapon.name}}</h5>
-                                <span class="mat-card-subtitle">
-                                    {{weapon.weaponType | weaponTypeName}}      
-                                </span>
-                            </div>
-                        </mat-panel-title>
-                
-                        <mat-panel-description>
-                            <ng-container *ngIf="showDescription.value">
-                                <span class="space">
-                                    <span class="color-accent">
-                                        {{weapon.damage | weaponDamage}}
-                                    </span>
-                                    {{weapon.damageTypes | weaponDamageTypes}}
-                                </span>
-                    
-                                <span>
-                                    {{weapon.price | price}}
-                                </span>
-                            </ng-container>
-                
-                            <ng-container *ngIf="weapon.isExotic">
-                                <span class="spacer"></span>
-                                <app-exotic-property class="space"></app-exotic-property>
-                            </ng-container>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    
-                    <p>
-                        <span class="space">
-                            Урон:                     
-                            <span class="color-accent">
-                                {{weapon.damage | weaponDamage}}
-                            </span>
-                            {{weapon.damageTypes | weaponDamageTypes}}
-                        </span>
-                        <span class="space">
-                            Цена: {{weapon.price | price}}
-                        </span>
-                        <span class="space">
-                            Вес: {{weapon.weight | weight}}
-                        </span>
-                    </p>
-                    
-                    <mat-chip-list>
-                        <ng-container *ngFor="let prop of weapon.weaponProperties">
-                            <mat-chip color="primary" selected [matTooltip]="prop.data.description" matTooltipClass="tool-tip">
-                                {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}
-                            </mat-chip>
-                        </ng-container>
-                    </mat-chip-list>
-                    
-                    <mat-action-row>
-                        <ng-container *ngIf="weapon.description">
-                            <div class="description">{{weapon.description}}</div>
-                        </ng-container>
-                        <div class="actions">
-                            <button mat-icon-button color="primary" (click)="editWeapon(weapon)">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                            <button mat-icon-button color="warn" (click)="deleteWeapon(weapon)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                    </mat-action-row>
-                </mat-expansion-panel>
+        <div class="section-body">
+            <ng-container *ngIf="weaponSection.additionalInfo">
+                <mat-card>
+                    <mat-card-content>
+                        {{weaponSection.additionalInfo}}
+                    </mat-card-content>
+                </mat-card>
             </ng-container>
-        </mat-accordion>
+    
+            <mat-accordion multi>
+                <ng-container *ngFor="let weapon of weaponSection.weapons">
+                    <mat-expansion-panel 
+                        matBadge="New" matBadgeSize="large" matBadgePosition="before" [matBadgeHidden]="!weapon.isNew"
+                        *ngIf="{value: true} as showDescription" 
+                        (opened)="showDescription.value=false" 
+                        (closed)="showDescription.value=true"
+                    >
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="double-title">
+                                    <h5>{{weapon.name}}</h5>
+                                    <span class="mat-card-subtitle">
+                                        {{weapon.weaponType | weaponTypeName}}      
+                                    </span>
+                                </div>
+                            </mat-panel-title>
+                    
+                            <mat-panel-description>
+                                <ng-container *ngIf="showDescription.value">
+                                    <span class="space">
+                                        <span class="color-accent">
+                                            {{weapon.damage | weaponDamage}}
+                                        </span>
+                                        {{weapon.damageTypes | weaponDamageTypes}}
+                                    </span>
+                        
+                                    <span>
+                                        {{weapon.price | price}}
+                                    </span>
+                                </ng-container>
+                    
+                                <ng-container *ngIf="weapon.isExotic">
+                                    <span class="spacer"></span>
+                                    <app-exotic-property class="space"></app-exotic-property>
+                                </ng-container>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        
+                        <p>
+                            <span class="space">
+                                Шкода:                     
+                                <span class="color-accent">
+                                    {{weapon.damage | weaponDamage}}
+                                </span>
+                                {{weapon.damageTypes | weaponDamageTypes}}
+                            </span>
+                            <span class="space">
+                                Ціна: {{weapon.price | price}}
+                            </span>
+                            <span class="space">
+                                Вага: {{weapon.weight | weight}}
+                            </span>
+                        </p>
+                        
+                        <mat-chip-list>
+                            <ng-container *ngFor="let prop of weapon.weaponProperties">
+                                <mat-chip color="primary" selected [matTooltip]="prop.data.description" matTooltipClass="tool-tip">
+                                    {{prop.data.name}} {{prop.additionalData == null ? '' : '(' + prop.additionalData + ')'}}
+                                </mat-chip>
+                            </ng-container>
+                        </mat-chip-list>
+                        
+                        <mat-action-row>
+                            <ng-container *ngIf="weapon.description">
+                                <div class="description">{{weapon.description}}</div>
+                            </ng-container>
+                            <div class="actions">
+                                <button mat-icon-button color="primary" (click)="editWeapon(weapon)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="warn" (click)="deleteWeapon(weapon)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+                </ng-container>
+            </mat-accordion>
+        </div>
     </ng-container>
 </ng-container>

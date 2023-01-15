@@ -1,3 +1,4 @@
+import { OperationType } from './../../enums/operationType';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -31,7 +32,7 @@ export class NavMenuComponent {
   addWeapon(): void {
     const dialogRef = this.dialog.open(WeaponFormDialogComponent, {
       width: '1000px',
-      data: {operation: 'Добавить'}
+      data: {operation: OperationType.Add}
     });
 
     dialogRef.afterClosed().subscribe(weapon => {
@@ -44,7 +45,7 @@ export class NavMenuComponent {
   addWeaponProp(): void {
     const dialogRef = this.dialog.open(WeaponPropFormDialogComponent, {
       width: '1000px',
-      data: {operation: 'Добавить'}
+      data: {operation: OperationType.Add}
     });
 
     dialogRef.afterClosed().subscribe(weaponProp => {

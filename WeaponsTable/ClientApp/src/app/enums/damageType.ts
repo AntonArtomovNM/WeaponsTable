@@ -17,43 +17,43 @@ export enum DamageType {
 export function getDamageTypeDisplayName(value: DamageType) {
     switch (value) {
         case DamageType.Slashing: {
-          return 'Рубящий';
+          return 'Рубаюча';
         }
         case DamageType.Piercing: {
-          return 'Колющий';
+          return 'Колюча';
         }
         case DamageType.Bludgeoning: {
-          return 'Дробящий';
+          return 'Дробляча';
         }
         case DamageType.Poison: {
-          return 'Ядом';
+          return 'Отрутою';
         }
         case DamageType.Acid: {
-          return 'Кислотой';
+          return 'Кислотою';
         }
         case DamageType.Fire: {
-          return 'Огнём';
+          return 'Вогнем';
         }
         case DamageType.Cold: {
           return 'Холодом';
         }
         case DamageType.Radiant: {
-          return 'Излучением';
+          return 'Випромінюванням';
         }
         case DamageType.Necrotic: {
-          return 'Некротический';
+          return 'Некротична';
         }
         case DamageType.Lightning: {
-          return 'Молнией';
+          return 'Блискавкою';
         }
         case DamageType.Thunder: {
           return 'Громом';
         }
         case DamageType.Force: {
-          return 'Силой';
+          return 'Силовим полем';
         }
         case DamageType.Psychic: {
-          return 'Психический';
+          return 'Психічна';
         }
         default: {
           return 'INVALID_VALUE';

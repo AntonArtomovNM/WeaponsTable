@@ -9,19 +9,19 @@ export enum WeaponType {
 export function getWeaponTypeDisplayName(value: WeaponType){
     switch(value) {
         case WeaponType.SimpleMelee: {
-            return 'Простое Рукопашное';
+            return 'Проста Рукопашна';
         }
         case WeaponType.SimpleRange: {
-            return 'Простое Дальнобойное';
+            return 'Проста Дальнобійна';
         }
         case WeaponType.MartialMelee: {
-            return 'Воинское Рукопашное';
+            return 'Військова Рукопашна';
         }
         case WeaponType.MartialRange: {
-            return 'Воинское Дальнобойное';
+            return 'Військова Дальнобійна';
         }
         case WeaponType.Firearm: {
-            return 'Огнестрельное';
+            return 'Вогнепальна';
         }
     }
 }

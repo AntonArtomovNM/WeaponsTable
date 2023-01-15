@@ -1,6 +1,6 @@
 <div mat-dialog-title>
     <div class="form-title">
-        {{data.operation}} оружие
+        {{data.operation | operationTypeName}} зброю
         <button mat-icon-button type="button" (click)="closeDialog()">
             <mat-icon>clear</mat-icon>
         </button>
@@ -10,7 +10,7 @@
 <div mat-dialog-content>
     <form [formGroup]="form">
         <mat-form-field appearance="legacy" class="space">
-            <mat-label>Название</mat-label>
+            <mat-label>Назва</mat-label>
             <input matInput formControlName="name">
         </mat-form-field>
 
@@ -24,20 +24,20 @@
         </mat-form-field>
 
         <mat-checkbox formControlName="isExotic">
-            Экзотическое
+            Рідкісна
         </mat-checkbox>
 
         <div class="mb-2">
             <span formGroupName="damage">
-                <span class="mr-2">Урон: </span>
+                <span class="mr-2">Шкода: </span>
                 
                 <mat-form-field appearance="legacy" class="mr-3 sm-field">
-                    <mat-label>Кол-во</mat-label>
+                    <mat-label>К-сть</mat-label>
                     <input [required]="isDamageRequired()" matInput type="number" formControlName="diceAmount" min="1" pattern="\d*">
                 </mat-form-field>
             
                 <mat-form-field appearance="legacy" class="mr-3 sm-field">
-                    <mat-label>Кость</mat-label>
+                    <mat-label>Кість</mat-label>
                     <mat-select [required]="isDamageRequired()" formControlName="diceType">
                         <mat-option *ngFor="let dice of diceOptions" [value]="dice.value">
                         {{dice.label}}
@@ -47,7 +47,7 @@
             </span>
     
             <mat-form-field appearance="legacy" class="space">
-                <mat-label>Тип Урона</mat-label>
+                <mat-label>Тип Шкоди</mat-label>
                 <mat-select [required]="isDamageRequired()" formControlName="damageTypes" multiple>
                     <mat-option *ngFor="let type of damageTypeOptions" [value]="type">
                         {{type | damageTypeName}}
@@ -56,7 +56,7 @@
             </mat-form-field>
         
             <span formGroupName="price" class="space">
-                <span class="mr-2">Цена: </span>
+                <span class="mr-2">Ціна: </span>
             
                 <mat-form-field appearance="legacy" class="sm-field mr-1">
                     <mat-label>Пм</mat-label>
@@ -79,7 +79,7 @@
                 </mat-form-field>
             </span>
         
-            <span class="mr-2">Вес: </span>
+            <span class="mr-2">Вага: </span>
         
             <mat-form-field appearance="legacy" class="sm-field">
                 <mat-label>Кг</mat-label>
@@ -111,13 +111,13 @@
         </mat-chip-list>
     
         <mat-form-field appearance="legacy" class="full-width mt-3">
-            <mat-label>Описание</mat-label>
+            <mat-label>Опис</mat-label>
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
         
         <div mat-dialog-actions class="d-flex justify-content-between">
-            <button mat-raised-button type="button" (click)="closeDialog()">Отмена</button>
-            <button mat-raised-button color="primary" type="button" [disabled]="!form.valid" [mat-dialog-close]="saveWeapon()">Сохранить</button>
+            <button mat-raised-button type="button" (click)="closeDialog()">Скасувати</button>
+            <button mat-raised-button color="primary" type="button" [disabled]="!form.valid" [mat-dialog-close]="saveWeapon()">Зберегти</button>
         </div>
     </form>
 </div>
